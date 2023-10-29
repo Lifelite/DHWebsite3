@@ -18,9 +18,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {mainListItems, secondaryListItems} from "./listItems";
-import Album from "./Album";
-
+import Home from "./Home";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import HouseIcon from "@mui/icons-material/House";
+import ListItemText from "@mui/material/ListItemText";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import PhotoIcon from "@mui/icons-material/Photo";
+import ScienceIcon from "@mui/icons-material/Science";
+import LinkIcon from "@mui/icons-material/Link";
+import SignIn from "./SignIn";
+import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 
 const drawerWidth = 180;
 
@@ -50,14 +58,90 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
+
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
+
 
 export default function NavBar() {
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [displayedObject, setSelectedObject] = React.useState("home")
+
+    function eventHandler() {
+        switch (displayedObject) {
+            case "home":
+                return <Home/>
+            case "events":
+                return <Events/>
+            case "gallery":
+                return <Gallery/>
+            case "signin":
+                return <SignIn/>
+            case "links":
+                return <Links/>
+        }
+    }
+
+    const handleListItemClick = (event, index) => {
+        setSelectedIndex(index);
+        setSelectedObject(event)
+    };
+
+    const mainListItems = (
+        <React.Fragment>
+            <ListItemButton
+                selected={selectedIndex === 0}
+                onClick={(event) => handleListItemClick("home", 0)}
+            >
+                <ListItemIcon>
+                    <HouseIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+            </ListItemButton>
+            <ListItemButton
+                selected={selectedIndex === 1}
+                onClick={(event) => handleListItemClick("events", 1)}
+            >
+                <ListItemIcon>
+                    <CalendarMonthIcon />
+                </ListItemIcon>
+                <ListItemText primary="Events" />
+            </ListItemButton>
+            <ListItemButton
+                selected={selectedIndex === 2}
+                onClick={(event) => handleListItemClick("gallery", 2)}
+            >
+                <ListItemIcon>
+                    <PhotoIcon />
+                </ListItemIcon>
+                <ListItemText primary="Gallery" />
+            </ListItemButton>
+            <ListItemButton
+                selected={selectedIndex === 4}
+                onClick={(event) => handleListItemClick("links", 4)}
+            >
+                <ListItemIcon>
+                    <LinkIcon />
+                </ListItemIcon>
+                <ListItemText primary="Links" />
+            </ListItemButton>
+            <Divider/>
+            <ListItemButton
+                selected={selectedIndex === 3}
+                onClick={(event) => handleListItemClick("signin", 3)}
+            >
+                <ListItemIcon>
+                    <PermIdentityRoundedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Sign In" />
+            </ListItemButton>
+        </React.Fragment>
+    );
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -109,14 +193,14 @@ export default function NavBar() {
                         height: '100vh',
                         overflow: 'auto',
                         backgroundImage: "url('/dhbg.jpg')",
-                        backgroundSize: 'fit',
+                        backgroundSize: 'cover',
                         backgroundPosition: 'right',
                         backgroundRepeat: "no-repeat"
                     }}
                 >
                     <Toolbar/>
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
-                        <Album/>
+                        {eventHandler()}
                     </Container>
                 </Box>
             </Box>

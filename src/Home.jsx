@@ -15,7 +15,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Album() {
+export default function Home() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
@@ -33,6 +33,8 @@ export default function Album() {
                         bgcolor: 'background.paper',
                         pt: 8,
                         pb: 6,
+                        display: 'flex',
+                        alignItems: 'center',
                     }}
                 >
                     <Container maxWidth="sm">
