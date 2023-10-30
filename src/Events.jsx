@@ -1,13 +1,7 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -29,7 +23,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Links() {
+export default function Events() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -48,7 +42,7 @@ export default function Links() {
                     }}
                 >
                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                        Still under Construction!!!
+                        Still under Construction, but Secret Santa is probably going on!!!
                     </Typography>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -3,21 +3,13 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-//import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Home from "./Home";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -25,10 +17,13 @@ import HouseIcon from "@mui/icons-material/House";
 import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PhotoIcon from "@mui/icons-material/Photo";
-import ScienceIcon from "@mui/icons-material/Science";
 import LinkIcon from "@mui/icons-material/Link";
 import SignIn from "./SignIn";
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
+import Gallery from "./Gallery";
+import Events from "./Events";
+import Links from "./Links";
+
 
 const drawerWidth = 180;
 
@@ -65,7 +60,7 @@ const defaultTheme = createTheme();
 
 
 export default function NavBar() {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -96,7 +91,7 @@ export default function NavBar() {
         <React.Fragment>
             <ListItemButton
                 selected={selectedIndex === 0}
-                onClick={(event) => handleListItemClick("home", 0)}
+                onClick={() => handleListItemClick("home", 0)}
             >
                 <ListItemIcon>
                     <HouseIcon />
@@ -105,7 +100,7 @@ export default function NavBar() {
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 1}
-                onClick={(event) => handleListItemClick("events", 1)}
+                onClick={() => handleListItemClick("events", 1)}
             >
                 <ListItemIcon>
                     <CalendarMonthIcon />
@@ -114,7 +109,7 @@ export default function NavBar() {
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}
-                onClick={(event) => handleListItemClick("gallery", 2)}
+                onClick={() => handleListItemClick("gallery", 2)}
             >
                 <ListItemIcon>
                     <PhotoIcon />
@@ -123,7 +118,7 @@ export default function NavBar() {
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 4}
-                onClick={(event) => handleListItemClick("links", 4)}
+                onClick={() => handleListItemClick("links", 4)}
             >
                 <ListItemIcon>
                     <LinkIcon />
@@ -133,7 +128,7 @@ export default function NavBar() {
             <Divider/>
             <ListItemButton
                 selected={selectedIndex === 3}
-                onClick={(event) => handleListItemClick("signin", 3)}
+                onClick={() => handleListItemClick("signin", 3)}
             >
                 <ListItemIcon>
                     <PermIdentityRoundedIcon />
@@ -178,17 +173,11 @@ export default function NavBar() {
                     <Divider/>
                     <List component="nav">
                         {mainListItems}
-                        {/*<Divider sx={{my: 1}}/>*/}
-                        {/*{secondaryListItems}*/}
                     </List>
                 </Drawer>
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
@@ -198,7 +187,6 @@ export default function NavBar() {
                         backgroundRepeat: "no-repeat"
                     }}
                 >
-                    <Toolbar/>
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                         {eventHandler()}
                     </Container>
