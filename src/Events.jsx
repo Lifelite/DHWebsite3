@@ -5,15 +5,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {addressState} from "./listItems";
-import {Input, MenuItem, Select} from "@mui/material";
+import {MenuItem, Radio, RadioGroup, Select} from "@mui/material";
+import StarsIcon from '@mui/icons-material/Stars';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -36,6 +35,16 @@ export default function Events() {
         setState(event.target.value);
     };
 
+    const [allergy, setAllergy] = React.useState(true)
+    const handleAllergy = () => {
+        if (allergy === true) {
+            setAllergy(false)
+        }
+        else {
+            setAllergy(true)
+        }
+    }
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="l">
@@ -43,20 +52,18 @@ export default function Events() {
                 <Box
                     sx={{
                         flexGrow: 1,
-                        height: '100vh',
                         overflow: 'auto',
                         bgcolor: 'background.paper',
-                        marginTop: 8,
+                        marginTop: 6,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        pt: 8,
-                        pb: 6,
+                        py: 6,
                         px: 6,
                     }}
                 >
                     <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                        <LockOutlinedIcon/>
+                        <StarsIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
@@ -134,7 +141,7 @@ export default function Events() {
                                     autoComplete="home city"
                                 />
                             </Grid>
-                            <Grid item sm={2}>
+                            <Grid item sm={3}>
                                 <Select
                                     labelId="address-level1"
                                     id="address-level1"
@@ -149,7 +156,7 @@ export default function Events() {
                                     ))}
                                 </Select>
                             </Grid>
-                            <Grid item sm={4}>
+                            <Grid item sm={3}>
                                 <TextField
                                     fullWidth
                                     required
@@ -160,27 +167,88 @@ export default function Events() {
                                 />
                             </Grid>
                             <Grid item sm={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="likes"
+                                    label="Hobbies, Likes, etc."
+                                    multiline
+                                    minRows={4}
+                                    maxRows={4}
+                                />
+                            </Grid>
+                            <Grid item sm={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="dislikes"
+                                    label="Dislikes (Do Not Want)"
+                                    multiline
+                                    minRows={4}
+                                    maxRows={4}
+                                />
+                            </Grid>
+                            <Grid item sm={12}>
+                                <TextField
+                                    fullWidth
+                                    name="charity"
+                                    label="Favorite Charity?"
+                                    id="charity"
+                                />
+                            </Grid>
+                            <Grid item sm={12}>
+                                <FormControlLabel
+                                    control={<Checkbox value="allergy" color="primary"/>}
+                                    label="I have an allergy"
+                                    onChange={handleAllergy}
+                                />
+                            </Grid>
+                            <Grid item sm={12} hidden={allergy}>
+                                <TextField
+                                    fullWidth
+                                    name="allergy-text"
+                                    label="Allergies"
+                                    id="allergy-text"
+                                />
+                            </Grid>
+                            <Grid item sm={12}>
+                                <Typography component="h4" variant="body">
+                                    NSFW Okay?
+                                </Typography>
+                                <RadioGroup
+                                    aria-labelledby="nsfw-radio-button"
+                                    defaultValue="no"
+                                    name="nsfw"
+                                    sx={{paddingX: 3}}
+                                >
+                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                                    <FormControlLabel value="degen" control={<Radio />} label="I'm a Degenerate" />
+                                </RadioGroup>
+                            </Grid>
+
+                            <Grid item sm={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="Accept Santa" color="primary"/>}
                                     label="I solemnly swear to be an awesome Secret Santa"
                                 />
                             </Grid>
-
+                            <Grid item sm={12}>
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{mt: 3, mb: 2}}
                             >
                                 Sign Up
                             </Button>
-                            <Grid container justifyContent="flex-end">
-                                <Grid item>
-                                    <Link href="#" variant="body2">
-                                        Already have an account? Sign in
-                                    </Link>
-                                </Grid>
                             </Grid>
+                            {/*<Grid container justifyContent="flex-end">*/}
+                            {/*    <Grid item>*/}
+                            {/*        <Link href="#" variant="body2">*/}
+                            {/*            Already have an account? Sign in*/}
+                            {/*        </Link>*/}
+                            {/*    </Grid>*/}
+                            {/*</Grid>*/}
                         </Grid>
                     </Box>
                 </Box>

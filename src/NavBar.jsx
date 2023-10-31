@@ -46,7 +46,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
                 }),
                 width: theme.spacing(7),
                 [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(8),
+                    width: theme.spacing(7),
                 },
             }),
         },
@@ -164,7 +164,7 @@ export default function NavBar() {
                             onClick={toggleDrawer}
                             edge="start"
                             sx={{
-                                marginRight: '7px',
+                                justifyContent: 'flex-end',
                                 ...(open && {display: 'none'})}}
                         >
                             <MenuIcon/>
