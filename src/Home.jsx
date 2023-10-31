@@ -6,9 +6,9 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Copyright from "./Copyright";
+
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -19,14 +19,6 @@ export default function Home() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
-            {/*<AppBar position="relative">*/}
-            {/*    <Toolbar>*/}
-            {/*        <CameraIcon sx={{ mr: 2 }} />*/}
-            {/*        <Typography variant="h6" color="inherit" noWrap>*/}
-            {/*            Album layout*/}
-            {/*        </Typography>*/}
-            {/*    </Toolbar>*/}
-            {/*</AppBar>*/}
             <main>
                 <Box
                     sx={{
@@ -71,22 +63,6 @@ export default function Home() {
                     </Grid>
                 </Container>
             </main>
-            {/* Footer */}
-            {/*<Box sx={{p: 2, position:'fixed', bottom:0, left:0, right:0 }} component="footer">*/}
-            {/*    <Typography variant="h6" align="center" gutterBottom>*/}
-            {/*        Drunken Huntsman*/}
-            {/*    </Typography>*/}
-            {/*    <Typography*/}
-            {/*        variant="subtitle1"*/}
-            {/*        align="center"*/}
-            {/*        color="text.secondary"*/}
-            {/*        component="p"*/}
-            {/*    >*/}
-            {/*        Escape from the normal, into the fun.*/}
-            {/*    </Typography>*/}
-            {/*    <Copyright />*/}
-            {/*</Box>*/}
-            {/* End footer */}
         </ThemeProvider>
     );
 }

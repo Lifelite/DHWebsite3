@@ -11,6 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {initializeApp} from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function Copyright(props) {
     return (
@@ -25,18 +27,48 @@ function Copyright(props) {
     );
 }
 
+
+
+
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBwUiYjX6d8azQobMYTmfWoV0GNEmJ-7AI",
+    authDomain: "drunken-huntsman-website.firebaseapp.com",
+    databaseURL: "https://drunken-huntsman-website-default-rtdb.firebaseio.com",
+    projectId: "drunken-huntsman-website",
+    storageBucket: "drunken-huntsman-website.appspot.com",
+    messagingSenderId: "372293584198",
+    appId: "1:372293584198:web:31790e84ba875b9f825147",
+    measurementId: "G-ZS15LY1VT3"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth();
+
+
 
 export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        let email = data.get('email');
+        let password = data.get('password');
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
     };
 
     return (
@@ -66,10 +98,10 @@ export default function SignIn() {
                             margin="normal"
                             required
                             fullWidth
-                            id="username"
-                            label="User Name"
-                            name="username"
-                            autoComplete="username"
+                            id="email"
+                            label="Email"
+                            name="email"
+                            autoComplete="email"
                             autoFocus
                         />
                         <TextField
