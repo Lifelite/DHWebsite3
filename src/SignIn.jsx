@@ -11,8 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {initializeApp} from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {app} from "./firebase"
 
 function Copyright(props) {
     return (
@@ -34,20 +34,9 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBwUiYjX6d8azQobMYTmfWoV0GNEmJ-7AI",
-    authDomain: "drunken-huntsman-website.firebaseapp.com",
-    databaseURL: "https://drunken-huntsman-website-default-rtdb.firebaseio.com",
-    projectId: "drunken-huntsman-website",
-    storageBucket: "drunken-huntsman-website.appspot.com",
-    messagingSenderId: "372293584198",
-    appId: "1:372293584198:web:31790e84ba875b9f825147",
-    measurementId: "G-ZS15LY1VT3"
-};
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+const auth = getAuth(app);
 
 
 

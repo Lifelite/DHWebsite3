@@ -11,22 +11,29 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {addressState} from "./listItems";
-import {MenuItem, Radio, RadioGroup, Select} from "@mui/material";
+import {Alert, MenuItem, Radio, RadioGroup, Select} from "@mui/material";
 import StarsIcon from '@mui/icons-material/Stars';
+import {SantaSubmit} from "./mySQL";
+import NavBar from "./NavBar";
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function Events() {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        let ss = new SantaSubmit(data);
+        ss.writeSantaData().then(
+            r => {
+
+                console.log("Form Submitted")
+            }).catch(e => {
+             console.log(e)
+            setSubmitAlert(false)
         });
+
     };
 
     const [state, setState] = React.useState('AR');
@@ -44,6 +51,8 @@ export default function Events() {
             setAllergy(true)
         }
     }
+
+    const [submitAlert, setSubmitAlert] = React.useState(true)
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -68,6 +77,11 @@ export default function Events() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
+                    <div hidden={submitAlert}>
+                        <Alert variant="filled" severity="error">
+                            Submission Error, Try again later!
+                        </Alert>
+                    </div>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
                         <Grid container spacing={2}>
                             <Grid item sm={6}>
@@ -138,7 +152,7 @@ export default function Events() {
                                     id="city"
                                     label="City"
                                     name="city"
-                                    autoComplete="home city"
+                                    autoComplete="address-level2"
                                 />
                             </Grid>
                             <Grid item sm={3}>
@@ -152,7 +166,7 @@ export default function Events() {
                                     fullWidth
                                 >
                                     {addressState.map((aState) => (
-                                        <MenuItem value={aState}>{aState}</MenuItem>
+                                        <MenuItem key={aState} value={aState}>{aState}</MenuItem>
                                     ))}
                                 </Select>
                             </Grid>
@@ -171,6 +185,7 @@ export default function Events() {
                                     required
                                     fullWidth
                                     id="likes"
+                                    name="likes"
                                     label="Hobbies, Likes, etc."
                                     multiline
                                     minRows={4}
@@ -181,6 +196,7 @@ export default function Events() {
                                 <TextField
                                     required
                                     fullWidth
+                                    name="dislikes"
                                     id="dislikes"
                                     label="Dislikes (Do Not Want)"
                                     multiline
@@ -198,7 +214,7 @@ export default function Events() {
                             </Grid>
                             <Grid item sm={12}>
                                 <FormControlLabel
-                                    control={<Checkbox value="allergy" color="primary"/>}
+                                    control={<Checkbox value="allergy" color="primary" id="allergy-checkbox"/>}
                                     label="I have an allergy"
                                     onChange={handleAllergy}
                                 />
@@ -217,13 +233,14 @@ export default function Events() {
                                 </Typography>
                                 <RadioGroup
                                     aria-labelledby="nsfw-radio-button"
+                                    id="nsfw"
                                     defaultValue="no"
                                     name="nsfw"
                                     sx={{paddingX: 3}}
                                 >
-                                    <FormControlLabel value="no" control={<Radio />} label="No" />
-                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                                    <FormControlLabel value="degen" control={<Radio />} label="I'm a Degenerate" />
+                                    <FormControlLabel id="nsfw-no" value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel id="nsfw-yes" value="yes" control={<Radio />} label="Yes" />
+                                    <FormControlLabel id="nsfw-degen" value="degen" control={<Radio />} label="I'm a Degenerate" />
                                 </RadioGroup>
                             </Grid>
 
@@ -231,6 +248,8 @@ export default function Events() {
                                 <FormControlLabel
                                     control={<Checkbox value="Accept Santa" color="primary"/>}
                                     label="I solemnly swear to be an awesome Secret Santa"
+                                    id="santa-accept"
+                                    name="santa-accept"
                                 />
                             </Grid>
                             <Grid item sm={12}>
@@ -238,6 +257,8 @@ export default function Events() {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
+                                id="submit"
+                                name="submit"
                             >
                                 Sign Up
                             </Button>
