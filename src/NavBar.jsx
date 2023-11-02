@@ -26,6 +26,7 @@ import Links from "./Links";
 import {SubmitConfirmation} from "./SubmitConfirmation";
 
 
+
 const drawerWidth = 180;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -84,6 +85,7 @@ export default function NavBar() {
                 return <SubmitConfirmation/>
         }
     }
+
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);

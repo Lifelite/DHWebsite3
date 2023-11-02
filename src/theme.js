@@ -13,8 +13,8 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
-    confirmation: {
-      main: green.A400
+    success: {
+      main: green.A100
     }
   },
 });

@@ -9,10 +9,6 @@ import Container from '@mui/material/Container';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Home() {
@@ -52,7 +48,7 @@ export default function Home() {
                             spacing={2}
                             justifyContent="center"
                         >
-                            <Button variant="contained" href={"https://discord.gg/drunkenhuntsman"}>Join our Discord!</Button>
+                            <Button variant="contained" href={"https://discord.gg/kAXQJBMXB3"}>Join our Discord!</Button>
                             {/*<Button variant="outlined">Secondary action</Button>*/}
                         </Stack>
                     </Container>
