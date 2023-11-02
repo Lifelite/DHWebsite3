@@ -1,4 +1,5 @@
 import {initializeApp} from "firebase/app";
+import {getAuth, onAuthStateChanged, signInWithEmailAndPassword} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBwUiYjX6d8azQobMYTmfWoV0GNEmJ-7AI",
@@ -12,3 +13,19 @@ const firebaseConfig = {
 };
 
 export let app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app)
+
+export function signIn(auth, email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+}
+

@@ -23,8 +23,8 @@ import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import Gallery from "./Gallery";
 import Events from "./Events";
 import Links from "./Links";
-import {SubmitConfirmation} from "./SubmitConfirmation";
-
+import {auth} from "./firebase"
+import { onAuthStateChanged } from "firebase/auth"
 
 
 const drawerWidth = 180;
@@ -56,10 +56,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const uid = user.uid;
+    } else {
 
+    }
+    export const userSignedIn = user.isAuthenticated()
+})
 
 export default function NavBar() {
     const [open, setOpen] = React.useState(false);
@@ -81,8 +86,6 @@ export default function NavBar() {
                 return <SignIn/>
             case "links":
                 return <Links/>
-            case "submitted":
-                return <SubmitConfirmation/>
         }
     }
 
