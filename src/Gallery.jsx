@@ -25,11 +25,11 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 const itemData = [
     {
-        img: '/src/assets/DH-Logo.png',
+        img: '/DH-Logo.png',
         title: 'Drunken Huntsman Logo',
     },
     {
-        img: '/src/assets/images/neon-style-coming-soon-glowing-background-design_1017-25516.avif',
+        img: '/neon-style-coming-soon-glowing-background-design_1017-25516.avif',
         title: 'More Coming Soon',
     },
 ];
