@@ -15,6 +15,7 @@ import {Alert, MenuItem, Radio, RadioGroup, Select, Snackbar} from "@mui/materia
 import StarsIcon from '@mui/icons-material/Stars';
 import {SantaSubmit} from "./mySQL";
 import {SubmitConfirmation} from "./SubmitConfirmation";
+import {useState} from "react";
 
 
 const defaultTheme = createTheme();
@@ -112,6 +113,19 @@ export default function Events() {
         },
     });
 
+
+    const handleDiscordChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value.replace(/[^\w\d]/g, "");
+        setFormValues({
+            ...formValues,
+            [name]: {
+                ...formValues[name],
+                value
+            }
+        });
+    };
+
     const handleTextChange = (e) => {
         const {name, value} = e.target;
         setFormValues({
@@ -188,6 +202,8 @@ export default function Events() {
                             <Grid container spacing={2}>
                                 <Grid item sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '20' }}
+                                        type='text'
                                         autoComplete="given-name"
                                         name="firstName"
                                         required
@@ -203,6 +219,8 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '20' }}
+                                        type='text'
                                         required
                                         fullWidth
                                         id="lastName"
@@ -217,6 +235,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={6}>
                                     <TextField
+                                        type='email'
                                         required
                                         fullWidth
                                         id="email"
@@ -231,13 +250,15 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '20'}}
+                                        type='text'
                                         required
                                         fullWidth
                                         id="discord"
                                         label="Discord Username"
                                         name="discord"
                                         autoComplete="discord"
-                                        onChange={handleTextChange}
+                                        onChange={handleDiscordChange}
                                         error={formValues.discord.error}
                                         helpertext={formValues.discord.error ? formValues.discord.errorMessage : undefined}
                                         value={formValues.discord.value}
@@ -245,6 +266,8 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <TextField
+                                        inputProps={{ maxLength: '40' }}
+                                        type='text'
                                         required
                                         fullWidth
                                         name="address1"
@@ -259,6 +282,8 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <TextField
+                                        inputProps={{ maxLength: '40' }}
+                                        type='text'
                                         fullWidth
                                         name="address-line2"
                                         label="Address Line 2"
@@ -268,6 +293,8 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '30' }}
+                                        type='text'
                                         required
                                         fullWidth
                                         id="city"
@@ -297,6 +324,8 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={3}>
                                     <TextField
+                                        inputProps={{ maxLength: '5' }}
+                                        type='number'
                                         fullWidth
                                         required
                                         id="postal-code"
@@ -311,6 +340,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <TextField
+                                        inputProps={{ maxLength: '3000' }}
                                         required
                                         fullWidth
                                         id="likes"
@@ -327,6 +357,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <TextField
+                                        inputProps={{ maxLength: '3000' }}
                                         fullWidth
                                         name="dislikes"
                                         id="dislikes"
@@ -338,6 +369,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <TextField
+                                        inputProps={{ maxLength: '100' }}
                                         fullWidth
                                         name="charity"
                                         label="Favorite Charity?"
@@ -353,6 +385,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item sm={12} hidden={allergy}>
                                     <TextField
+                                        inputProps={{ maxLength: '100' }}
                                         fullWidth
                                         name="allergy-text"
                                         label="Allergies"
@@ -400,7 +433,7 @@ export default function Events() {
                                 </Grid>
                                 <Snackbar open={open} autoHideDuration={6000} onClose={handleToasterClose}>
                                     <Alert onClose={handleToasterClose} severity="error" sx={{width: '100%'}}>
-                                        Fill out the required fields, dumbass!
+                                        Either fill out the required fields or remove slashes, dumbass!
                                     </Alert>
                                 </Snackbar>
 

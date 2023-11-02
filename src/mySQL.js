@@ -7,10 +7,10 @@ export class SantaSubmit {
         this.lastName = data.get('lastName');
         this.email = data.get('email');
         this.discord = data.get('discord');
-        this.address1 = data.get('address-line1');
+        this.address1 = data.get('address1');
         this.address2 = data.get('address-line2');
-        this.state = data.get('address-level1');
-        this.zip = data.get('postal-code');
+        this.state = data.get('state');
+        this.zip = data.get('zip');
         this.likes = data.get('likes');
         this.dislikes = data.get('dislikes');
         this.charity = data.get('charity');
@@ -37,5 +37,6 @@ export class SantaSubmit {
           };
 
         return set(ref(this.db, 'santas/' + this.discord), formData);
-};
+    };
 }
+
