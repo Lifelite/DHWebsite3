@@ -23,6 +23,8 @@ import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import Gallery from "./Gallery";
 import Events from "./Events";
 import Links from "./Links";
+import {SubmitConfirmation} from "./SubmitConfirmation";
+
 
 
 const drawerWidth = 180;
@@ -79,8 +81,11 @@ export default function NavBar() {
                 return <SignIn/>
             case "links":
                 return <Links/>
+            case "submitted":
+                return <SubmitConfirmation/>
         }
     }
+
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
