@@ -139,7 +139,7 @@ export default function Events() {
     };
 
     const [subButton, setSubButton] = React.useState(true);
-    const handleSubButton = (e) => {
+    const handleSubButton = () => {
         if (subButton === true) {
             setSubButton(false)
         } else {
