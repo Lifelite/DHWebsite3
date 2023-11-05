@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -17,8 +17,6 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PhotoIcon from "@mui/icons-material/Photo";
 import LinkIcon from "@mui/icons-material/Link";
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
-import {auth} from "./firebase"
-import { onAuthStateChanged } from "firebase/auth"
 import {ViewBox} from "./ViewBox";
 import theme from "./theme";
 
@@ -50,19 +48,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         },
     }),
 );
-
-
-const defaultTheme = createTheme();
-// onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//         const uid = user.uid;
-//     } else {
-//
-//     }
-//     const userSignedIn = user.isAuthenticated()
-// })
-
-
 export default function NavBar() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
