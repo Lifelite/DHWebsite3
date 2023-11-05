@@ -1,5 +1,5 @@
 import {ThemeProvider} from "@mui/material/styles";
-import {BottomNavigation, BottomNavigationAction, Paper, useTheme} from "@mui/material";
+import {BottomNavigation, BottomNavigationAction, Paper} from "@mui/material";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import * as React from "react";
 import LinkIcon from "@mui/icons-material/Link";
@@ -11,12 +11,7 @@ import theme from "./theme"
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
-const fabStyle = {
-    position: 'absolute',
-    bottom: 16,
-    right: 16,
-};
-export default function MobileNav(props) {
+export default function MobileNav() {
 
     function matchPage (number) {
         switch (number) {
@@ -40,22 +35,6 @@ export default function MobileNav(props) {
         setPage(matchPage(value))
     }
 
-    // const page = () => {
-    //     switch (value) {
-    //         case 0 :
-    //             return "home"
-    //         case 1:
-    //             return "events"
-    //         case 2:
-    //             return "gallery"
-    //         case 3:
-    //             return "links"
-    //         case 4:
-    //             return "signin"
-    //
-    //     }
-    // }
-
 
     return (
         <ThemeProvider theme={theme}>
@@ -63,7 +42,7 @@ export default function MobileNav(props) {
                 <CssBaseline/>
                 <ViewBox view={thisPage}/>
             </Box>
-            <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={1}>
+            <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0, zIndex:10,}} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
