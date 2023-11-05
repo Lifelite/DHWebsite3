@@ -233,6 +233,7 @@ export default function Events() {
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '50' }}
                                         type='email'
                                         required
                                         fullWidth

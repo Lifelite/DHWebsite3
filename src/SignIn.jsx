@@ -10,9 +10,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {app} from "./firebase"
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./theme";
+
 
 function Copyright(props) {
     return (
@@ -30,13 +30,7 @@ function Copyright(props) {
 
 
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
-
-
-
-const auth = getAuth(app);
 
 
 
@@ -48,20 +42,23 @@ export default function SignIn() {
         let email = data.get('email');
         let password = data.get('password');
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+        console.log(email)
+        console.log(password)
+
+        // signInWithEmailAndPassword(auth, email, password)
+        //     .then((userCredential) => {
+        //         // Signed in
+        //         const user = userCredential.user;
+        //         // ...
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //     });
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
