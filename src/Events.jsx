@@ -177,6 +177,7 @@ export default function Events() {
                     <Box
                         sx={{
                             flexGrow: 1,
+                            flexShrink: 1,
                             overflow: 'auto',
                             bgcolor: 'background.paper',
                             marginTop: 6,
