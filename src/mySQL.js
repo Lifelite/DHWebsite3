@@ -52,7 +52,7 @@ export class SantaSubmit {
             nsfw: this.nsfw,
         };
 
-        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
+        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
         return await conn.execute(query, params);
     };
 }
