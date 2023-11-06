@@ -3,9 +3,9 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "dev": "node -r dotenv/config ./node_modules/.bin/vite",
+    "build": "node -r dotenv/config ./node_modules/.bin/vite build",
+    "preview": "node -r dotenv/config ./node_modules/.bin/vite preview"
   },
   "dependencies": {
     "@emotion/react": "latest",
