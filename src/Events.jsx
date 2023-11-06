@@ -16,7 +16,6 @@ import StarsIcon from '@mui/icons-material/Stars';
 import {SantaSubmit} from "./mySQL";
 import {SubmitConfirmation} from "./SubmitConfirmation";
 import theme from "./theme";
-import {useEffect} from "react";
 
 export default function Events() {
 
@@ -55,9 +54,7 @@ export default function Events() {
                 }).catch(e => {
                 console.log(e)
                 setSubmitAlert(false)
-                useEffect(() => {
-                    window.scrollTo(0, 0)
-                }, [])
+                window.scrollTo(0, 0)
             });
         } else {
             setOpen(true)
