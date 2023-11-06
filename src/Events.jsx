@@ -13,7 +13,7 @@ import {ThemeProvider} from '@mui/material/styles';
 import {addressState} from "./listItems";
 import {Alert, MenuItem, Radio, RadioGroup, Select, Snackbar} from "@mui/material";
 import StarsIcon from '@mui/icons-material/Stars';
-import {SantaSubmit} from "./mySQL";
+import {SantaSubmit} from "./api/mySQL";
 import {SubmitConfirmation} from "./SubmitConfirmation";
 import theme from "./theme";
 
