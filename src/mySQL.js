@@ -4,11 +4,11 @@ import {connect} from "@planetscale/database";
 
 const config = {
     //url: process.env.DATABASE_URL,
-    host: process.env.VITE_PLANETSCALE_DB_HOST,
-    username: process.env.VITE_PLANETSCALE_DB_USERNAME,
-    password: process.env.VITE_PLANETSCALE_DB_PASSWORD,
-    database: process.env.VITE_PLANETSCALE_DB,
-    ssl: process.env.VITE_PLANETSCALE_SSL_CERT_PATH
+    host: import.meta.env.PLANETSCALE_DB_HOST,
+    username: import.meta.env.PLANETSCALE_DB_USERNAME,
+    password: import.meta.env.PLANETSCALE_DB_PASSWORD,
+    database: import.meta.env.PLANETSCALE_DB,
+    ssl: import.meta.env.PLANETSCALE_SSL_CERT_PATH
 
 }
 
