@@ -63,6 +63,7 @@ export default function NavBar() {
             process.env.VITE_PLANETSCALE_DB,
             "stuff",
             process.env.PLANETSCALE_DB_HOST,
+            import.meta.env.VITE_PLANETSCALE_DB,
             )
     };
 
