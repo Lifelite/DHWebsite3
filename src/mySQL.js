@@ -1,5 +1,4 @@
 import {connect} from "@planetscale/database";
-import * as env from '/.env'
 
 
 const config = {
