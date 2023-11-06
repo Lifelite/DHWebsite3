@@ -11,13 +11,19 @@ import react from '@vitejs/plugin-react';
 
 module.exports = {
   env: {
-    PS_HOST: process.env.PS_HOST,
-    PS_USERNAME: process.env.PS_USERNAME,
-    PS_PASSWORD: process.env.PS_PASSWORD,
-    PS_DATABASE: process.env.PS_DATABASE,
+    PS_HOST: import.meta.env.env.PS_HOST,
+    PS_USERNAME: import.meta.env.env.PS_USERNAME,
+    PS_PASSWORD: import.meta.env.env.PS_PASSWORD,
+    PS_DATABASE: import.meta.env.env.PS_DATABASE,
   },
   plugins: [react()],
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    env: {
+      PS_HOST: import.meta.env.env.PS_HOST,
+      PS_USERNAME: import.meta.env.env.PS_USERNAME,
+      PS_PASSWORD: import.meta.env.env.PS_PASSWORD,
+      PS_DATABASE: import.meta.env.env.PS_DATABASE,
+    }
   }
 }
