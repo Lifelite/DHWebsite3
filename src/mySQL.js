@@ -46,9 +46,7 @@ export class SantaSubmit {
 
         const query = 'INSERT INTO SecretSanta ("firstName", "lastName", "email", "discord", "address1", "address2", "state", "zip", "likes", "dislikes", "charity", "allergies", "nsfw") VALUES (:firstName :lastName :email :discord :address1 :address2 :state :zip :likes :dislikes :charity :allergies :nsfw)'
 
-        const results = await conn.execute(query, params)
-
-        return !results["error"];
+        return await conn.execute(query, params);
     };
 }
 
