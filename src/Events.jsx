@@ -54,7 +54,6 @@ export default function Events() {
                 }).catch(e => {
                 console.log(e)
                 setSubmitAlert(false)
-                frameElement.scrollTo(0, 0)
             });
         } else {
             setOpen(true)
