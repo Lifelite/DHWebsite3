@@ -4,11 +4,11 @@ import {connect} from "@planetscale/database";
 
 const config = {
     //url: process.env.DATABASE_URL,
-    host: import.meta.env.PLANETSCALE_DB_HOST,
-    username: import.meta.env.PLANETSCALE_DB_USERNAME,
-    password: import.meta.env.PLANETSCALE_DB_PASSWORD,
-    database: import.meta.env.PLANETSCALE_DB,
-    ssl: import.meta.env.PLANETSCALE_SSL_CERT_PATH
+    host: process.env.PLANETSCALE_DB_HOST,
+    username: process.env.PLANETSCALE_DB_USERNAME,
+    password: process.env.PLANETSCALE_DB_PASSWORD,
+    database: process.env.PLANETSCALE_DB,
+    ssl: process.env.PLANETSCALE_SSL_CERT_PATH
 
 }
 
@@ -51,7 +51,7 @@ export class SantaSubmit {
         };
 
         const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
-
+        console.log(process.env.PLANETSCALE_DB)
         return await conn.execute(query, params);
     };
 }
