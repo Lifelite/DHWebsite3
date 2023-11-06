@@ -1,13 +1,13 @@
-import { defineConfig } from 'vite';
+// import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    target: 'esnext'
-  }
-});
+// export default defineConfig({
+//   plugins: [react()],
+//   build: {
+//     target: 'esnext'
+//   }
+// });
 
 module.exports = {
   env: {
@@ -15,5 +15,9 @@ module.exports = {
     PS_USERNAME: process.env.PS_USERNAME,
     PS_PASSWORD: process.env.PS_PASSWORD,
     PS_DATABASE: process.env.PS_DATABASE,
+  },
+  plugins: [react()],
+  build: {
+    target: 'esnext'
   }
 }
