@@ -66,7 +66,8 @@ export default function NavBar() {
             import.meta.env.VITE_PLANETSCALE_DB,
             process.env.REACT_APP_PS_DATABASE,
             process.env.PS_DATABASE,
-            process.env.VITE_PS_DATABASE
+            process.env.VITE_PS_DATABASE,
+            process.env.VITE_VERCEL_ENV
             )
     };
 
