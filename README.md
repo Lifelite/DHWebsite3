@@ -1,39 +1,7 @@
-# Material UI - Vite.js example
+# DrunkenHuntsman v3
 
-## How to use
+This is a website for my discord server, it's primary for personal activities, such as Secret Santa signup, posting pictures to the gallery, and managing the Secret Santa activities via a dashboard behind auth.
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+Not for use elsewhere, just a showcase of some of my skillset. 
 
-<!-- #default-branch-switch -->
-
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-vite
-cd material-ui-vite
-```
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-```
-
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite)
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-vite)
-
-## The idea behind the example
-
-This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+Thanks for checking this out, I'm still on a long journey to master React and full stack development, but am learning fast!
