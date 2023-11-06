@@ -67,7 +67,8 @@ export default function NavBar() {
             process.env.REACT_APP_PS_DATABASE,
             process.env.PS_DATABASE,
             process.env.VITE_PS_DATABASE,
-            process.env.VITE_VERCEL_ENV
+            process.env.VITE_VERCEL_ENV,
+            process.env.VERCEL_ENV
             )
     };
 
