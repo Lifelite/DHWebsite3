@@ -59,7 +59,7 @@ export default function NavBar() {
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
         setSelectedObject(event)
-        console.log(process.env.PLANETSCALE_DB, "stuff")
+        console.log(process.env.VITE_PLANETSCALE_DB, "stuff")
     };
 
     const mainListItems = (
