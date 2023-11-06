@@ -23,6 +23,7 @@ export class SantaSubmit {
         this.discord = data.get('discord');
         this.address1 = data.get('address1');
         this.address2 = data.get('address-line2');
+        this.city = data.get('city');
         this.state = data.get('state');
         this.zip = data.get('zip');
         this.likes = data.get('likes');
@@ -41,6 +42,7 @@ export class SantaSubmit {
             discord: this.discord,
             address1: this.address1,
             address2: this.address2,
+            city: this.city,
             state: this.state,
             zip: this.zip,
             likes: this.likes,
@@ -50,8 +52,7 @@ export class SantaSubmit {
             nsfw: this.nsfw,
         };
 
-        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
-        console.log(import.meta.env.PLANETSCALE_DB)
+        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
         return await conn.execute(query, params);
     };
 }
