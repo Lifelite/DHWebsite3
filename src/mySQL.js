@@ -1,5 +1,13 @@
-import { getDatabase, ref, set } from "firebase/database"
-import { app } from "./firebase"
+import {connect} from "@planetscale/database";
+
+
+const config = {
+    host: process.env.PS_HOST,
+    username: process.env.PS_USERNAME,
+    password: process.env.PS_PASSWORD,
+}
+
+const conn = await connect(config)
 
 export class SantaSubmit {
     constructor(data) {
@@ -16,27 +24,31 @@ export class SantaSubmit {
         this.charity = data.get('charity');
         this.allergies = data.get('allergy-text');
         this.nsfw = data.get('nsfw');
-        this.db = getDatabase(app);
     };
 
-    writeSantaData() {
-           const formData = {
-              firstName: this.firstName,
-              lastName: this.lastName,
-              email: this.email,
-              discord: this.discord,
-              address1: this.address1,
-              address2: this.address2,
-              state: this.state,
-              zip: this.zip,
-              likes: this.likes,
-              dislikes: this.dislikes,
-              charity: this.charity,
-              allergies: this.allergies,
-              nsfw: this.nsfw,
-          };
 
-        return set(ref(this.db, 'santas/' + this.discord), formData);
+    async writeSantaData() {
+        const params = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            discord: this.discord,
+            address1: this.address1,
+            address2: this.address2,
+            state: this.state,
+            zip: this.zip,
+            likes: this.likes,
+            dislikes: this.dislikes,
+            charity: this.charity,
+            allergies: this.allergies,
+            nsfw: this.nsfw,
+        };
+
+        const query = 'INSERT INTO SecretSanta ("firstName", "lastName", "email", "discord", "address1", "address2", "state", "zip", "likes", "dislikes", "charity", "allergies", "nsfw") VALUES (:firstName :lastName :email :discord :address1 :address2 :state :zip :likes :dislikes :charity :allergies :nsfw)'
+
+        const results = await conn.execute(query, params)
+
+        return !results["error"];
     };
 }
 

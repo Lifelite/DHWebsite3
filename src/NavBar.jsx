@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -7,10 +7,8 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import Home from "./Home";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import HouseIcon from "@mui/icons-material/House";
@@ -18,13 +16,9 @@ import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PhotoIcon from "@mui/icons-material/Photo";
 import LinkIcon from "@mui/icons-material/Link";
-import SignIn from "./SignIn";
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
-import Gallery from "./Gallery";
-import Events from "./Events";
-import Links from "./Links";
-import {auth} from "./firebase"
-import { onAuthStateChanged } from "firebase/auth"
+import {ViewBox} from "./ViewBox";
+import theme from "./theme";
 
 
 const drawerWidth = 180;
@@ -54,18 +48,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         },
     }),
 );
-
-
-const defaultTheme = createTheme();
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const uid = user.uid;
-    } else {
-
-    }
-    export const userSignedIn = user.isAuthenticated()
-})
-
 export default function NavBar() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
@@ -73,22 +55,6 @@ export default function NavBar() {
     };
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [displayedObject, setSelectedObject] = React.useState("home")
-
-    function eventHandler() {
-        switch (displayedObject) {
-            case "home":
-                return <Home/>
-            case "events":
-                return <Events/>
-            case "gallery":
-                return <Gallery/>
-            case "signin":
-                return <SignIn/>
-            case "links":
-                return <Links/>
-        }
-    }
-
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
@@ -147,7 +113,7 @@ export default function NavBar() {
     );
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Box sx={{display: 'flex'}}>
                 <CssBaseline/>
                 <Drawer variant="permanent" open={open}>
@@ -183,22 +149,7 @@ export default function NavBar() {
                         {mainListItems}
                     </List>
                 </Drawer>
-                <Box
-                    component="main"
-                    sx={{
-                        flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
-                        backgroundImage: "url('/dhbg.jpg')",
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'right',
-                        backgroundRepeat: "no-repeat"
-                    }}
-                >
-                    <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
-                        {eventHandler()}
-                    </Container>
-                </Box>
+                <ViewBox view={displayedObject} />
             </Box>
         </ThemeProvider>
     );

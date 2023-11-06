@@ -9,16 +9,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 import {addressState} from "./listItems";
 import {Alert, MenuItem, Radio, RadioGroup, Select, Snackbar} from "@mui/material";
 import StarsIcon from '@mui/icons-material/Stars';
 import {SantaSubmit} from "./mySQL";
 import {SubmitConfirmation} from "./SubmitConfirmation";
-import {useState} from "react";
-
-
-const defaultTheme = createTheme();
+import theme from "./theme";
 
 export default function Events() {
 
@@ -167,7 +164,7 @@ export default function Events() {
     const [submitAlert, setSubmitAlert] = React.useState(true);
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <div hidden={submitDone}>
                 <SubmitConfirmation/>
             </div>
@@ -177,6 +174,7 @@ export default function Events() {
                     <Box
                         sx={{
                             flexGrow: 1,
+                            flexShrink: 1,
                             overflow: 'auto',
                             bgcolor: 'background.paper',
                             marginTop: 6,
@@ -200,7 +198,7 @@ export default function Events() {
                         </div>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
                             <Grid container spacing={2}>
-                                <Grid item sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
                                         inputProps={{ maxLength: '20' }}
                                         type='text'
@@ -217,7 +215,7 @@ export default function Events() {
                                         value={formValues.firstName.value}
                                     />
                                 </Grid>
-                                <Grid item sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
                                         inputProps={{ maxLength: '20' }}
                                         type='text'
@@ -233,8 +231,9 @@ export default function Events() {
                                         value={formValues.lastName.value}
                                     />
                                 </Grid>
-                                <Grid item sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
+                                        inputProps={{ maxLength: '50' }}
                                         type='email'
                                         required
                                         fullWidth
@@ -248,7 +247,7 @@ export default function Events() {
                                         value={formValues.email.value}
                                     />
                                 </Grid>
-                                <Grid item sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
                                         inputProps={{ maxLength: '20'}}
                                         type='text'
@@ -264,7 +263,7 @@ export default function Events() {
                                         value={formValues.discord.value}
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <TextField
                                         inputProps={{ maxLength: '40' }}
                                         type='text'
@@ -280,7 +279,7 @@ export default function Events() {
                                         value={formValues.address1.value}
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <TextField
                                         inputProps={{ maxLength: '40' }}
                                         type='text'
@@ -291,7 +290,7 @@ export default function Events() {
                                         autoComplete="address-line2"
                                     />
                                 </Grid>
-                                <Grid item sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
                                         inputProps={{ maxLength: '30' }}
                                         type='text'
@@ -307,7 +306,7 @@ export default function Events() {
                                         value={formValues.city.value}
                                     />
                                 </Grid>
-                                <Grid item sm={3}>
+                                <Grid item xs={6} sm={3}>
                                     <Select
                                         labelId="address-level1"
                                         id="address-level1"
@@ -322,7 +321,7 @@ export default function Events() {
                                         ))}
                                     </Select>
                                 </Grid>
-                                <Grid item sm={3}>
+                                <Grid item xs={6} sm={3}>
                                     <TextField
                                         inputProps={{ maxLength: '5' }}
                                         type='number'
@@ -338,7 +337,7 @@ export default function Events() {
                                         value={formValues.zip.value}
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <TextField
                                         inputProps={{ maxLength: '3000' }}
                                         required
@@ -355,7 +354,7 @@ export default function Events() {
                                         value={formValues.likes.value}
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <TextField
                                         inputProps={{ maxLength: '3000' }}
                                         fullWidth
@@ -367,7 +366,7 @@ export default function Events() {
                                         maxRows={4}
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <TextField
                                         inputProps={{ maxLength: '100' }}
                                         fullWidth
@@ -376,14 +375,14 @@ export default function Events() {
                                         id="charity"
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <FormControlLabel
                                         control={<Checkbox value="allergy" color="primary" id="allergy-checkbox"/>}
                                         label="I have an allergy"
                                         onChange={handleAllergy}
                                     />
                                 </Grid>
-                                <Grid item sm={12} hidden={allergy}>
+                                <Grid item xs={12} sm={12} hidden={allergy}>
                                     <TextField
                                         inputProps={{ maxLength: '100' }}
                                         fullWidth
@@ -392,7 +391,7 @@ export default function Events() {
                                         id="allergy-text"
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <Typography component="h4" variant="body">
                                         NSFW Okay?
                                     </Typography>
@@ -410,7 +409,7 @@ export default function Events() {
                                     </RadioGroup>
                                 </Grid>
 
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <FormControlLabel
                                         control={<Checkbox value="Accept Santa" color="primary"/>}
                                         onChange={handleSubButton}
@@ -419,7 +418,7 @@ export default function Events() {
                                         name="santa-accept"
                                     />
                                 </Grid>
-                                <Grid item sm={12}>
+                                <Grid item xs={12} sm={12}>
                                     <Button
                                         disabled={subButton}
                                         type="submit"
