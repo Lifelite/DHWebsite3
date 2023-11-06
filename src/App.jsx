@@ -15,6 +15,8 @@ export default function App() {
         }
     }, []);
 
+    console.log(process.env, import.meta.env)
+
     const isMobile = width <= 768;
   return (
     <>

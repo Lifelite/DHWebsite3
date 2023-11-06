@@ -1,15 +1,14 @@
 import {connect} from "@planetscale/database";
+// import { config } from 'dotenv'
 
 
 
 const config = {
     //url: process.env.DATABASE_URL,
-    host: import.meta.env.VITE_PLANETSCALE_DB_HOST,
-    username: import.meta.env.VITE_PLANETSCALE_DB_USERNAME,
-    password: import.meta.env.VITE_PLANETSCALE_DB_PASSWORD,
-    database: import.meta.env.VITE_PLANETSCALE_DB,
-    ssl: import.meta.env.VITE_PLANETSCALE_SSL_CERT_PATH
-
+    host: process.env.PS_HOST,
+    username: process.env.PS_USERNAME,
+    password: process.env.PS_PASSWORD,
+    database: process.env.PS_DATABASE,
 }
 
 
