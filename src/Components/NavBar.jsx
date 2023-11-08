@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import {styled, ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -18,13 +18,14 @@ import PhotoIcon from "@mui/icons-material/Photo";
 import LinkIcon from "@mui/icons-material/Link";
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import {ViewBox} from "./ViewBox";
-import theme from "./theme";
+import theme from "../theme";
+import {SignedIn, SignedOut, UserButton, useUser} from "@clerk/clerk-react";
 
 
 const drawerWidth = 180;
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
+const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
+    ({theme, open}) => ({
         '& .MuiDrawer-paper': {
             position: 'relative',
             whiteSpace: 'nowrap',
@@ -48,6 +49,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         },
     }),
 );
+
+function getUser () {
+    const { isSignedIn, user, isLoaded } = useUser();
+
+    if (!isLoaded) {
+        return null
+    }
+
+    if (isSignedIn) {
+        return user.firstName
+    }
+}
+
+
 export default function NavBar() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
@@ -60,6 +75,8 @@ export default function NavBar() {
         setSelectedIndex(index);
         setSelectedObject(event)
     };
+    const menuText = getUser()
+
 
     const mainListItems = (
         <React.Fragment>
@@ -68,47 +85,47 @@ export default function NavBar() {
                 onClick={() => handleListItemClick("home", 0)}
             >
                 <ListItemIcon>
-                    <HouseIcon />
+                    <HouseIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Home" />
+                <ListItemText primary="Home"/>
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 1}
                 onClick={() => handleListItemClick("events", 1)}
             >
                 <ListItemIcon>
-                    <CalendarMonthIcon />
+                    <CalendarMonthIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Events" />
+                <ListItemText primary="Events"/>
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}
                 onClick={() => handleListItemClick("gallery", 2)}
             >
                 <ListItemIcon>
-                    <PhotoIcon />
+                    <PhotoIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Gallery" />
+                <ListItemText primary="Gallery"/>
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 4}
                 onClick={() => handleListItemClick("links", 4)}
             >
                 <ListItemIcon>
-                    <LinkIcon />
+                    <LinkIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Links" />
+                <ListItemText primary="Links"/>
             </ListItemButton>
             <Divider/>
-            <ListItemButton
-                selected={selectedIndex === 3}
-                onClick={() => handleListItemClick("signin", 3)}
-            >
-                <ListItemIcon>
-                    <PermIdentityRoundedIcon />
-                </ListItemIcon>
-                <ListItemText primary="Sign In" />
-            </ListItemButton>
+                <ListItemButton
+                    selected={selectedIndex === 3}
+                    onClick={() => handleListItemClick("signin", 3)}
+                >
+                    <ListItemIcon>
+                        <PermIdentityRoundedIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Sign In"}/>
+                </ListItemButton>
         </React.Fragment>
     );
 
@@ -129,8 +146,9 @@ export default function NavBar() {
                             onClick={toggleDrawer}
                             edge="start"
                             sx={{
-                            marginRight: '10px',
-                            ...(!open && {display: 'none'})}}
+                                marginRight: '10px',
+                                ...(!open && {display: 'none'})
+                            }}
                         >
                             <ChevronLeftIcon/>
                         </IconButton>
@@ -139,7 +157,8 @@ export default function NavBar() {
                             edge="start"
                             sx={{
                                 justifyContent: 'flex-end',
-                                ...(open && {display: 'none'})}}
+                                ...(open && {display: 'none'})
+                            }}
                         >
                             <MenuIcon/>
                         </IconButton>
@@ -149,7 +168,7 @@ export default function NavBar() {
                         {mainListItems}
                     </List>
                 </Drawer>
-                <ViewBox view={displayedObject} />
+                <ViewBox view={displayedObject}/>
             </Box>
         </ThemeProvider>
     );

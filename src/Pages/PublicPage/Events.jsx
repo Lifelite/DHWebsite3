@@ -10,12 +10,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {ThemeProvider} from '@mui/material/styles';
-import {addressState} from "./listItems";
+import {addressState} from "../../Components/listItems";
 import {Alert, MenuItem, Radio, RadioGroup, Select, Snackbar} from "@mui/material";
 import StarsIcon from '@mui/icons-material/Stars';
-import {SantaSubmit} from "./mySQL";
-import {SubmitConfirmation} from "./SubmitConfirmation";
-import theme from "./theme";
+import {SantaSubmit} from "../../functions/mySQL";
+import {SubmitConfirmation} from "../../Components/SubmitConfirmation";
+import theme from "../../theme";
 
 export default function Events() {
 
