@@ -4,10 +4,13 @@ import * as React from "react";
 import Home from "../Pages/PublicPage/Home";
 import Events from "../Pages/PublicPage/Events";
 import Gallery from "../Pages/PublicPage/Gallery";
-import SignInPage from "../Pages/PublicPage/SignInPage";
 import Links from "../Pages/PublicPage/Links";
-import {UserDashboard} from "../Pages/UserPage/UserDashboard";
 import {Profile} from "../Pages/PublicPage/Profile";
+import {UserProfile} from "@clerk/clerk-react";
+import {UserHome} from "../Pages/Dashboard/UserHome";
+import {Messages} from "../Pages/Dashboard/Messages";
+import {UserInfo} from "../Pages/Dashboard/UserInfo";
+import {VictimInfo} from "../Pages/Dashboard/VictimInfo";
 
 export function ViewBox(props) {
 
@@ -23,6 +26,16 @@ export function ViewBox(props) {
                 return <Profile />
             case "links":
                 return <Links/>
+            case "userHome":
+                return <UserHome/>
+            case "messages":
+                return <Messages/>
+            case "userInfo":
+                return <UserInfo/>
+            case "victimInfo":
+                return <VictimInfo/>
+            case "profile":
+                return <UserProfile/>
         }
     }
 

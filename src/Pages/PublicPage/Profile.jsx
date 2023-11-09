@@ -1,16 +1,14 @@
-import Fragment from "react"
-import {SignedIn, SignedOut, useUser} from "@clerk/clerk-react";
-import {UserDashboard} from "../UserPage/UserDashboard";
+import {SignedIn, SignedOut} from "@clerk/clerk-react";
 import SignInPage from "./SignInPage";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import {ThemeProvider} from "@mui/material/styles";
 import * as React from "react";
 import theme from "../../theme";
-import {Dashboard} from "../Dashboard/Dashboard";
+import {Navigate} from "react-router-dom";
+
+
 export function Profile() {
-
-
 
 
     return (
@@ -24,11 +22,11 @@ export function Profile() {
                 }}
             >
                 <SignedIn>
-                    <Dashboard />
+                    <Navigate to={'/user'}/>
                 </SignedIn>
                 <SignedOut>
                     <SignInPage/>
-                </SignedOut>
+                </SignedOut>>
             </Box>
         </ThemeProvider>
     )

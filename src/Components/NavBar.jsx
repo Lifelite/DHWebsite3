@@ -9,17 +9,10 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import HouseIcon from "@mui/icons-material/House";
-import ListItemText from "@mui/material/ListItemText";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PhotoIcon from "@mui/icons-material/Photo";
-import LinkIcon from "@mui/icons-material/Link";
-import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import {ViewBox} from "./ViewBox";
 import theme from "../theme";
-import {SignedIn, SignedOut, UserButton, useUser} from "@clerk/clerk-react";
+import {UserMenuDesktop} from "./UserMenuDesktop";
+import {PublicMenuDesktop} from "./PublicMenuDesktop"
 
 
 const drawerWidth = 180;
@@ -50,84 +43,20 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
     }),
 );
 
-function getUser () {
-    const { isSignedIn, user, isLoaded } = useUser();
+export default function NavBar(props) {
+    const userFlow = props.userFlow
 
-    if (!isLoaded) {
-        return null
-    }
-
-    if (isSignedIn) {
-        return user.firstName
-    }
-}
-
-
-export default function NavBar() {
     const [open, setOpen] = React.useState(false);
+    const [menuSelected, setMenuSelected] = React.useState("home")
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
-    const [displayedObject, setSelectedObject] = React.useState("home")
 
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
-        setSelectedObject(event)
+    const callback = (displayedObject) => {
+        setMenuSelected(displayedObject)
     };
-    const menuText = getUser()
 
-
-    const mainListItems = (
-        <React.Fragment>
-            <ListItemButton
-                selected={selectedIndex === 0}
-                onClick={() => handleListItemClick("home", 0)}
-            >
-                <ListItemIcon>
-                    <HouseIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Home"/>
-            </ListItemButton>
-            <ListItemButton
-                selected={selectedIndex === 1}
-                onClick={() => handleListItemClick("events", 1)}
-            >
-                <ListItemIcon>
-                    <CalendarMonthIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Events"/>
-            </ListItemButton>
-            <ListItemButton
-                selected={selectedIndex === 2}
-                onClick={() => handleListItemClick("gallery", 2)}
-            >
-                <ListItemIcon>
-                    <PhotoIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Gallery"/>
-            </ListItemButton>
-            <ListItemButton
-                selected={selectedIndex === 4}
-                onClick={() => handleListItemClick("links", 4)}
-            >
-                <ListItemIcon>
-                    <LinkIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Links"/>
-            </ListItemButton>
-            <Divider/>
-                <ListItemButton
-                    selected={selectedIndex === 3}
-                    onClick={() => handleListItemClick("signin", 3)}
-                >
-                    <ListItemIcon>
-                        <PermIdentityRoundedIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary={"Sign In"}/>
-                </ListItemButton>
-        </React.Fragment>
-    );
+    const currentList = userFlow ? <UserMenuDesktop callback={callback}/> : <PublicMenuDesktop callback={callback}/> ;
 
     return (
         <ThemeProvider theme={theme}>
@@ -165,10 +94,10 @@ export default function NavBar() {
                     </Toolbar>
                     <Divider/>
                     <List component="nav">
-                        {mainListItems}
+                        {currentList}
                     </List>
                 </Drawer>
-                <ViewBox view={displayedObject}/>
+                <ViewBox view={menuSelected}/>
             </Box>
         </ThemeProvider>
     );

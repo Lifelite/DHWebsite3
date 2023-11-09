@@ -1,14 +1,10 @@
 import * as React from 'react';
 import {useEffect, useState} from "react";
 import {NavBarHandler} from "./Components/NavBarHandler";
-import {ClerkProvider} from "@clerk/clerk-react";
+import {ClerkProvider, SignedIn, SignedOut, SignIn} from "@clerk/clerk-react";
+import {Route, Routes} from "react-router-dom";
+import Button from "@mui/material/Button";
 
-
-const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-
-if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
-    throw new Error("Missing Publishable Key")
-}
 
 export default function App() {
     const [width, setWidth] = useState(window.innerWidth);
@@ -16,6 +12,7 @@ export default function App() {
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
     }
+
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
         return () => {
@@ -24,14 +21,47 @@ export default function App() {
     }, []);
 
     const isMobile = width <= 768;
-  return (
-    <>
-    <ClerkProvider publishableKey={clerkPubKey}>
-        <NavBarHandler
-            isMobile={isMobile}
-        />
-    </ClerkProvider>
-        </>
 
-  );
+    const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+    if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
+        throw new Error("Missing Publishable Key")
+    }
+
+
+    return (
+        <ClerkProvider publishableKey={clerkPubKey}>
+            <Routes>
+                <Route
+                    path='/'
+                    element={
+                        <NavBarHandler
+                            isMobile={isMobile}
+                            userFlow={false}
+                        />
+                    }
+                />
+                <Route
+                    path='/user'
+                    element={
+                        <>
+                            <SignedIn>
+                                <NavBarHandler
+                                    isMobile={isMobile}
+                                    userFlow={true}
+                                />
+                            </SignedIn>
+                            <SignedOut>
+                                <SignIn
+                                    redirectUrl={'/user'}
+                                />
+                                <Button variant="contained" href="https://drunkenhuntsman.com">Go to Homepage</Button>
+                            </SignedOut>
+                        </>
+
+                    }
+                />
+            </Routes>
+        </ClerkProvider>
+    );
 }

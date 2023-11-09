@@ -5,9 +5,13 @@ import NavBar from "./NavBar";
 export function NavBarHandler(props) {
 
     if (props.isMobile === true) {
-        return <MobileNav />
+        return <MobileNav
+            userFlow={props.userFlow}
+        />
     } else {
-        return <NavBar />
+        return <NavBar
+            userFlow={props.userFlow}
+        />
     }
 
 }
