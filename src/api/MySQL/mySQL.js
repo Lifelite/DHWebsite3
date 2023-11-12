@@ -31,8 +31,8 @@ export class SantaSubmit {
         this.charity = data.get('charity');
         this.allergies = data.get('allergy-text');
         this.nsfw = data.get('nsfw');
-        this.irl = data.get('irl')
-        this.backup = data.get('backup')
+        this.irl = data.get('irl');
+        this.backup = data.get('backup');
     };
 
 
@@ -56,7 +56,7 @@ export class SantaSubmit {
             backup: this.backup,
         };
 
-        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, 'irl', 'backup') VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
+        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, `irl`, `backup`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
         return await conn.execute(query, params);
     };
 }

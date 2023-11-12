@@ -1,10 +1,12 @@
 import * as React from 'react';
 import {useEffect, useState} from "react";
 import {NavBarHandler} from "./Components/NavBarHandler";
-import {ClerkProvider, SignedIn, SignedOut, SignIn} from "@clerk/clerk-react";
+import {ClerkProvider, SignedIn, SignedOut} from "@clerk/clerk-react";
 import {Route, Routes} from "react-router-dom";
 import Button from "@mui/material/Button";
 import NewUserHome from "./Pages/Dashboard/NewUserHome";
+import Box from "@mui/material/Box";
+import SignInPage from "./Pages/PublicPage/SignInPage";
 
 
 export default function App() {
@@ -55,10 +57,29 @@ export default function App() {
                                 />
                             </SignedIn>
                             <SignedOut>
-                                <SignIn
-                                    redirectUrl={'/user'}
-                                />
-                                <Button variant="contained" href="https://drunkenhuntsman.com">Go to Homepage</Button>
+                                <Box
+                                    component="main"
+                                    sx={{
+                                        flexGrow: 1,
+                                        height: '100vh',
+                                        overflow: 'auto',
+                                        backgroundImage: "url('/dhbg.jpg')",
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'right',
+                                        backgroundRepeat: "no-repeat"
+                                    }}
+                                >
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    flexDirection: 'column',
+                                                    justifyContent: 'center'
+                                                }}
+                                            >
+                                                <SignInPage />
+                                <Button variant="contained" href="https://drunkenhuntsman.com" pt={5}>Go to Homepage</Button>
+                                            </Box></Box>
                             </SignedOut>
                         </>
 
@@ -72,10 +93,29 @@ export default function App() {
                                 <NewUserHome />
                             </SignedIn>
                             <SignedOut>
-                                <SignIn
-                                    redirectUrl={'/user'}
-                                />
-                                <Button variant="contained" href="https://drunkenhuntsman.com">Go to Homepage</Button>
+                                <Box
+                                    component="main"
+                                    sx={{
+                                        flexGrow: 1,
+                                        height: '100vh',
+                                        overflow: 'auto',
+                                        backgroundImage: "url('/dhbg.jpg')",
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'right',
+                                        backgroundRepeat: "no-repeat"
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        <SignInPage />
+                                        <Button variant="contained" href="https://drunkenhuntsman.com" pt={5}>Go to Homepage</Button>
+                                    </Box></Box>
                             </SignedOut>
                         </>
                     }

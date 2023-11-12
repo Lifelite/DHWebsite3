@@ -3,9 +3,10 @@ import {BottomNavigation, BottomNavigationAction} from "@mui/material";
 import HouseIcon from "@mui/icons-material/House";
 import SettingsIcon from '@mui/icons-material/Settings';
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import {SignedIn} from "@clerk/clerk-react";
+import {SignedIn, SignedOut} from "@clerk/clerk-react";
 import ForumIcon from "@mui/icons-material/Forum";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import {Navigate} from "react-router-dom";
 
 export const UserMenuMobile = ({callback}) => {
 
@@ -66,6 +67,9 @@ export const UserMenuMobile = ({callback}) => {
                     />
                 </BottomNavigation>
             </SignedIn>
+            <SignedOut>
+                <Navigate to={'/'} />
+            </SignedOut>
         </React.Fragment>
     )
 }

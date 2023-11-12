@@ -59,9 +59,11 @@ export default function NavBar(props) {
     };
 
     const currentList = userFlow ? <UserMenuDesktop callback={callback}/> : <PublicMenuDesktop callback={callback}/> ;
-    const currentUser = useUser().user;
-    const userID = 'id' in currentUser ? currentUser.id : null
-    const userEmail =  'emailAddresses' in currentUser ? currentUser.emailAddresses[0] : null
+    const currentUser = useUser() ? useUser().user : null;
+    const [userID, userEmail] = useUser().isSignedIn ? [currentUser.id, currentUser.emailAddresses[0]] : [false, false]
+
+    // // const userID = "id" in currentUser ? currentUser.id : null
+    // // const userEmail =  'emailAddresses' in currentUser ? currentUser.emailAddresses[0] : null
 
     return (
         <ThemeProvider theme={theme}>

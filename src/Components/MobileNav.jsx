@@ -21,9 +21,9 @@ export default function MobileNav(props) {
     };
 
     const currentList = userFlow ? <UserMenuMobile callback={callback}/> : <PublicMenuMobile callback={callback}/> ;
-    const currentUser = useUser().user;
-    const userID = currentUser.id ? currentUser.id : null
-    const userEmail =  currentUser.emailAddresses[0] ? currentUser.emailAddresses : null
+    const currentUser = useUser() ? useUser().user : null;
+    const [userID, userEmail] = useUser().isSignedIn ? [currentUser.id, currentUser.emailAddresses[0]] : [false, false]
+
 
     return (
         <ThemeProvider theme={theme}>

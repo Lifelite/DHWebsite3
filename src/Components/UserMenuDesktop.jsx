@@ -3,9 +3,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import HouseIcon from "@mui/icons-material/House";
 import ListItemText from "@mui/material/ListItemText";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PhotoIcon from "@mui/icons-material/Photo";
-import LinkIcon from "@mui/icons-material/Link";
 import Divider from "@mui/material/Divider";
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import {SignedIn, SignedOut, UserButton, useUser} from "@clerk/clerk-react";
@@ -114,6 +111,9 @@ export const UserMenuDesktop = ({ callback }) => {
                     <ListItemText primary={"Home Page"}/>
                 </ListItemButton>
             </SignedIn>
+            <SignedOut>
+                <Navigate to={'/'} />
+            </SignedOut>
         </React.Fragment>
     )
 }
