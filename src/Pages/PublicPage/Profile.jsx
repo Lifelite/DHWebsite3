@@ -26,7 +26,7 @@ export function Profile() {
                 </SignedIn>
                 <SignedOut>
                     <SignInPage/>
-                </SignedOut>>
+                </SignedOut>
             </Box>
         </ThemeProvider>
     )

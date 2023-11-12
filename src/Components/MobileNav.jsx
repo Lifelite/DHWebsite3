@@ -11,10 +11,9 @@ import {PublicMenuMobile} from "./PublicMenuMobile";
 
 export default function MobileNav(props) {
     const userFlow = props.userFlow
+    const startTab = props.startTab
 
-    const comingFrom = (location.pathname==='/user') ? "userHome" : "home"
-
-    const [thisPage, setPage] = React.useState(comingFrom)
+    const [thisPage, setPage] = React.useState(startTab)
 
     const callback = (view) => {
         setPage(view)

@@ -7,10 +7,12 @@ export function NavBarHandler(props) {
     if (props.isMobile === true) {
         return <MobileNav
             userFlow={props.userFlow}
+            startTab={props.startTab}
         />
     } else {
         return <NavBar
             userFlow={props.userFlow}
+            startTab={props.startTab}
         />
     }
 

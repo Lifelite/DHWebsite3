@@ -1,11 +1,11 @@
 import * as React from "react";
 import {BottomNavigation, BottomNavigationAction} from "@mui/material";
 import HouseIcon from "@mui/icons-material/House";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PhotoIcon from "@mui/icons-material/Photo";
-import LinkIcon from "@mui/icons-material/Link";
+import SettingsIcon from '@mui/icons-material/Settings';
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import {SignedIn} from "@clerk/clerk-react";
+import ForumIcon from "@mui/icons-material/Forum";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 
 export const UserMenuMobile = ({callback}) => {
 
@@ -45,23 +45,23 @@ export const UserMenuMobile = ({callback}) => {
                     />
                     <BottomNavigationAction
                         label="Messages"
-                        icon={<CalendarMonthIcon/>}
+                        icon={<ForumIcon />}
                         value={1}
                     />
                     <BottomNavigationAction
                         label="Your Info"
-                        icon={<PhotoIcon/>}
+                        icon={<PermIdentityRoundedIcon/>}
                         value={2}
                     />
                     <BottomNavigationAction
                         label="Your Victim"
-                        icon={<LinkIcon/>}
+                        icon={<InsertEmoticonIcon/>}
                         value={3}
                     />
 
                     <BottomNavigationAction
                         label={"Profile"}
-                        icon={<PermIdentityRoundedIcon/>}
+                        icon={<SettingsIcon/>}
                         value={4}
                     />
                 </BottomNavigation>

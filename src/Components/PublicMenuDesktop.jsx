@@ -12,6 +12,7 @@ import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import Link from "@mui/material/Link";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import {ListItem} from "@mui/material";
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 export const PublicMenuDesktop = ({callback}) => {
@@ -37,6 +38,10 @@ export const PublicMenuDesktop = ({callback}) => {
     }
 
     const menuText = getUser()
+    const navigate = useNavigate()
+    const handlePageSwitch = () => {
+        navigate('/user')
+    }
 
     return (
         <React.Fragment>
@@ -95,8 +100,9 @@ export const PublicMenuDesktop = ({callback}) => {
                     </ListItemIcon>
                     <ListItemText primary={menuText}/>
                 </ListItem>
-                <ListItemButton>
-                    <Link to="/user"/>
+                <ListItemButton
+                    onClick={handlePageSwitch}
+                >
                     <ListItemIcon>
                         <DashboardIcon/>
                     </ListItemIcon>

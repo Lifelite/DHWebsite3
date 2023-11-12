@@ -13,6 +13,7 @@ import {ViewBox} from "./ViewBox";
 import theme from "../theme";
 import {UserMenuDesktop} from "./UserMenuDesktop";
 import {PublicMenuDesktop} from "./PublicMenuDesktop"
+import {useUser} from "@clerk/clerk-react";
 
 
 const drawerWidth = 180;
@@ -45,9 +46,10 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 
 export default function NavBar(props) {
     const userFlow = props.userFlow
+    const startTab = props.startTab
 
     const [open, setOpen] = React.useState(false);
-    const [menuSelected, setMenuSelected] = React.useState("home")
+    const [menuSelected, setMenuSelected] = React.useState(startTab)
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -57,6 +59,9 @@ export default function NavBar(props) {
     };
 
     const currentList = userFlow ? <UserMenuDesktop callback={callback}/> : <PublicMenuDesktop callback={callback}/> ;
+    const currentUser = useUser().user;
+    const userID = currentUser.id;
+    const userEmail =  currentUser.emailAddresses[0]
 
     return (
         <ThemeProvider theme={theme}>
@@ -97,7 +102,7 @@ export default function NavBar(props) {
                         {currentList}
                     </List>
                 </Drawer>
-                <ViewBox view={menuSelected}/>
+                <ViewBox view={menuSelected} userID={userID} userEmail={userEmail}/>
             </Box>
         </ThemeProvider>
     );

@@ -7,13 +7,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const defaultTheme = createTheme();
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../../theme";
 
 export default function Home() {
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>
                 <Box
@@ -49,15 +48,9 @@ export default function Home() {
                             justifyContent="center"
                         >
                             <Button variant="contained" href={"https://discord.gg/kAXQJBMXB3"}>Join our Discord!</Button>
-                            {/*<Button variant="outlined">Secondary action</Button>*/}
                         </Stack>
                     </Container>
                 </Box>
-                <Container sx={{ py: 2 }} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                    </Grid>
-                </Container>
             </main>
         </ThemeProvider>
     );

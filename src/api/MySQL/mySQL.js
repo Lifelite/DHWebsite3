@@ -1,4 +1,5 @@
 import {connect} from "@planetscale/database";
+import {UserSSInfo} from "../../functions/userInfo";
 // import { config } from 'dotenv'
 
 
@@ -57,3 +58,30 @@ export class SantaSubmit {
     };
 }
 
+
+
+export class SantaInfo {
+    constructor(user, email) {
+        this.email = email
+        this.user = user
+        this.ss = null
+    }
+
+    async associateUserName () {
+        const query = "UPDATE SecretSanta SET userName = '" + this.user + "' WHERE email = '" + this.email + "';"
+
+        return await conn.execute(query);
+    }
+
+    async getSantaData() {
+        const query = "SELECT * FROM SecretSanta WHERE email = '" + this.email + "';";
+        return await conn.execute(query);
+    }
+
+
+
+
+
+
+
+}

@@ -7,11 +7,13 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PhotoIcon from "@mui/icons-material/Photo";
 import LinkIcon from "@mui/icons-material/Link";
 import Divider from "@mui/material/Divider";
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import {SignedIn, SignedOut, UserButton, useUser} from "@clerk/clerk-react";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import Link from "@mui/material/Link";
+import ForumIcon from '@mui/icons-material/Forum';
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import {ListItem} from "@mui/material";
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 
@@ -40,6 +42,11 @@ export const UserMenuDesktop = ({ callback }) => {
     }
 
     const menuText = getUser()
+    const navigate = useNavigate()
+    const handlePageSwitch = () => {
+
+        navigate('/')
+    }
 
     return (
         <React.Fragment>
@@ -57,7 +64,7 @@ export const UserMenuDesktop = ({ callback }) => {
                 onClick={() => handleListItemClick("messages", 1)}
             >
                 <ListItemIcon>
-                    <CalendarMonthIcon/>
+                    <ForumIcon />
                 </ListItemIcon>
                 <ListItemText primary="Messages"/>
             </ListItemButton>
@@ -66,7 +73,7 @@ export const UserMenuDesktop = ({ callback }) => {
                 onClick={() => handleListItemClick("userInfo", 2)}
             >
                 <ListItemIcon>
-                    <PhotoIcon/>
+                    <PermIdentityRoundedIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Your Info"/>
             </ListItemButton>
@@ -75,7 +82,7 @@ export const UserMenuDesktop = ({ callback }) => {
                 onClick={() => handleListItemClick("victimInfo", 4)}
             >
                 <ListItemIcon>
-                    <LinkIcon/>
+                    <InsertEmoticonIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Your Victim"/>
             </ListItemButton>
@@ -98,12 +105,13 @@ export const UserMenuDesktop = ({ callback }) => {
                     </ListItemIcon>
                     <ListItemText primary={menuText} />
                 </ListItem>
-                <ListItemButton>
-                    <Link to="/user"/>
+                <ListItemButton
+                    onClick={handlePageSwitch}
+                >
                     <ListItemIcon>
                         <DashboardIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={"Dashboard"}/>
+                    <ListItemText primary={"Home Page"}/>
                 </ListItemButton>
             </SignedIn>
         </React.Fragment>
