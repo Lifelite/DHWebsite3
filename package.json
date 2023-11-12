@@ -8,6 +8,7 @@
     "preview": "node -r dotenv/config ./node_modules/.bin/vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.27.2",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.14.15",

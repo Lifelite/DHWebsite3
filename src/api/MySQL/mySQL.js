@@ -1,5 +1,5 @@
 import {connect} from "@planetscale/database";
-// import { config } from 'dotenv'
+
 
 
 
@@ -31,6 +31,8 @@ export class SantaSubmit {
         this.charity = data.get('charity');
         this.allergies = data.get('allergy-text');
         this.nsfw = data.get('nsfw');
+        this.irl = data.get('irl');
+        this.backup = data.get('backup');
     };
 
 
@@ -50,10 +52,39 @@ export class SantaSubmit {
             charity: this.charity,
             allergies: this.allergies,
             nsfw: this.nsfw,
+            irl: this.irl,
+            backup: this.backup,
         };
 
-        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
+        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, `irl`, `backup`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
         return await conn.execute(query, params);
     };
 }
 
+
+
+export class SantaInfo {
+    constructor(user, email) {
+        this.email = email
+        this.user = user
+        this.ss = null
+    }
+
+    async associateUserName () {
+        const query = "UPDATE SecretSanta SET userName = '" + this.user + "' WHERE email = '" + this.email + "';"
+
+        return await conn.execute(query);
+    }
+
+    async getSantaData() {
+        const query = "SELECT * FROM SecretSanta WHERE email = '" + this.email + "';";
+        return await conn.execute(query);
+    }
+
+
+
+
+
+
+
+}
