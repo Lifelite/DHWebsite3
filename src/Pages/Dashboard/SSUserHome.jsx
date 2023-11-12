@@ -36,7 +36,7 @@ export function SSUserHome() {
                 align="center"
                 color="text.secondary"
             >
-                It is {remainingDays} till Christmas!
+                It is {remainingDays} days until Christmas!
             </Typography>
                 <Typography
                     component="h5"

@@ -1,6 +1,5 @@
 import {connect} from "@planetscale/database";
-import {UserSSInfo} from "../../functions/userInfo";
-// import { config } from 'dotenv'
+
 
 
 
@@ -32,6 +31,8 @@ export class SantaSubmit {
         this.charity = data.get('charity');
         this.allergies = data.get('allergy-text');
         this.nsfw = data.get('nsfw');
+        this.irl = data.get('irl')
+        this.backup = data.get('backup')
     };
 
 
@@ -51,9 +52,11 @@ export class SantaSubmit {
             charity: this.charity,
             allergies: this.allergies,
             nsfw: this.nsfw,
+            irl: this.irl,
+            backup: this.backup,
         };
 
-        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw);";
+        const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, 'irl', 'backup') VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
         return await conn.execute(query, params);
     };
 }

@@ -6,7 +6,7 @@ import Events from "../Pages/PublicPage/Events";
 import Gallery from "../Pages/PublicPage/Gallery";
 import Links from "../Pages/PublicPage/Links";
 import {Profile} from "../Pages/PublicPage/Profile";
-import {UserProfile, useUser} from "@clerk/clerk-react";
+import {UserProfile} from "@clerk/clerk-react";
 import {UserHome} from "../Pages/Dashboard/UserHome";
 import {Messages} from "../Pages/Dashboard/Messages";
 import {UserInfo} from "../Pages/Dashboard/UserInfo";
@@ -59,7 +59,7 @@ export function ViewBox(props) {
             case "messages":
                 return <Messages/>
             case "userInfo":
-                return <UserInfo props={userData}/>
+                return <UserInfo userData={userData}/>
             case "victimInfo":
                 return <VictimInfo/>
             case "profile":

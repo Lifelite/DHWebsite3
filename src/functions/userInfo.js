@@ -8,6 +8,7 @@ export class UserSSInfo {
         this.email = this.userInfo["email"];
         this.address1 = this.userInfo["address1"];
         this.address2 = this.userInfo["address2"];
+        this.city = this.userInfo["city"]
         this.state = this.userInfo["state"];
         this.zip = this.userInfo["zip"];
         this.likes = this.userInfo["likes"];
@@ -16,6 +17,8 @@ export class UserSSInfo {
         this.charity = this.userInfo["charity"];
         this.nsfw = this.userInfo["nsfw"];
         this.victimName = this.userInfo["victimName"];
+        this.irl = this.userInfo["irl"]
+        this.backup = this.userInfo["backup"]
     }
 
     checkForAccount() {
@@ -23,22 +26,24 @@ export class UserSSInfo {
     }
 
     getInfo() {
-        return [
-
-        this.discord,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.address1,
-        this.address2,
-        this.state,
-        this.zip,
-        this.likes,
-        this.dislikes,
-        this.allergies,
-        this.charity,
-        this.nsfw,
-        this.victimName
-        ]
+        return {
+            discord: this.discord,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            address1: this.address1,
+            address2: this.address2,
+            city: this.city,
+            state: this.state,
+            zip: this.zip,
+            likes: this.likes,
+            dislikes: this.dislikes,
+            allergies: this.allergies,
+            charity: this.charity,
+            nsfw: this.nsfw,
+            victimName: this.victimName,
+            irl: this.irl,
+            backup: this.backup,
+        }
     }
 }

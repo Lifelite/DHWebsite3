@@ -60,8 +60,8 @@ export default function NavBar(props) {
 
     const currentList = userFlow ? <UserMenuDesktop callback={callback}/> : <PublicMenuDesktop callback={callback}/> ;
     const currentUser = useUser().user;
-    const userID = currentUser.id;
-    const userEmail =  currentUser.emailAddresses[0]
+    const userID = 'id' in currentUser ? currentUser.id : null
+    const userEmail =  'emailAddresses' in currentUser ? currentUser.emailAddresses[0] : null
 
     return (
         <ThemeProvider theme={theme}>
@@ -102,7 +102,11 @@ export default function NavBar(props) {
                         {currentList}
                     </List>
                 </Drawer>
-                <ViewBox view={menuSelected} userID={userID} userEmail={userEmail}/>
+                <ViewBox
+                    view={menuSelected}
+                    userID={userID}
+                    userEmail={userEmail}
+                />
             </Box>
         </ThemeProvider>
     );
