@@ -1,71 +1,20 @@
-import Typography from "@mui/material/Typography";
-import {Card, CardActionArea} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import React, {useState} from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import TextField from "@mui/material/TextField";
-import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import TextField from "@mui/material/TextField";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import {useState} from "react";
 
-export function InfoItem(props) {
-    const label = props.label
-    const info = props.info
-
-    const [pop, setPop] = React.useState(false)
-
-    const handleClick = (e) => {
-        setPop(true)
-    }
-
-    return (
-
-
-            <Grid
-                item={true}
-                xs={16}
-                sm={16}
-                md={8}
-                lg={8}
-
-            >
-                <CardActionArea
-                onClick={() => handleClick(label)}
-                >
-
-                <Card
-                    sx={{
-                        p: 2,
-                        margin: 'auto',
-                        flexGrow: 1,
-                        backGroundColor: (theme) =>
-                            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-                    }}
-                >
-
-                <Typography variant='h6' gutterBottom>
-                     {label}
-                </Typography>
-                <Typography variant='body1' gutterBottom>
-                    {info}
-                </Typography>
-                </Card>
-                </CardActionArea>
-            </Grid>
-    )
-}
 
 export function EditNameModal(props) {
-    const data = props.data ? props.data : "null"
-    const firstName = data.firstName ? data.firstName : ""
-    const lastName = data.lastName ? data.lastName : ""
+    const data = props.data
     const pop = props.pop
 
-    const [open, setOpen] = useState(pop);
-    const [firstNameValue, setFirstNameValue] = useState(firstName)
-    const [lastNameValue, setLastNameValue] = useState(lastName)
+    const [open, setOpen] = useState(true);
+    const [firstNameValue, setFirstNameValue] = useState(data.firstName)
+    const [lastNameValue, setLastNameValue] = useState(data.lastName)
 
     const handleLNChange = (e) => {
         const value = e.target;

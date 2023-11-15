@@ -121,6 +121,46 @@ export default function App() {
                     }
                 />
                 <Route
+                    path='/userInfo'
+                    element={
+                        <>
+                            <SignedIn>
+                                <NavBarHandler
+                                    isMobile={isMobile}
+                                    userFlow={true}
+                                    startTab={"userInfo"}
+                                />
+                            </SignedIn>
+                            <SignedOut>
+                                <Box
+                                    component="main"
+                                    sx={{
+                                        flexGrow: 1,
+                                        height: '100vh',
+                                        overflow: 'auto',
+                                        backgroundImage: "url('/dhbg.jpg')",
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'right',
+                                        backgroundRepeat: "no-repeat"
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        <SignInPage />
+                                        <Button variant="contained" href="https://drunkenhuntsman.com" pt={5}>Go to Homepage</Button>
+                                    </Box></Box>
+                            </SignedOut>
+                        </>
+
+                    }
+                />
+                <Route
                     path='/events'
                     element={
                         <NavBarHandler

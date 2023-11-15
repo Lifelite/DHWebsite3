@@ -1,15 +1,15 @@
-import EditIcon from "@mui/icons-material/Edit";
-import {Fab} from "@mui/material";
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import React from "react";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 
 export function EditButton(props) {
-    const field = props.fieldType
+    //const field = props.fieldType
 
 
     return (
-        <Fab size="small" color="secondary" aria-label="add" sx={{position: 'relative', left:'90%', top:'20%'
-        }}>
-            <EditIcon />
-        </Fab>
+        <Button variant="contained" size="medium" color="secondary" aria-label="edit">
+            Edit Information
+        </Button>
     )
 }

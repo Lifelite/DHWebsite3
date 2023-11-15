@@ -6,9 +6,9 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../../theme";
+import {Image} from "@mui/icons-material";
 
 export default function Home() {
     return (
@@ -24,17 +24,20 @@ export default function Home() {
                         alignItems: 'center',
                     }}
                 >
-                    <Container maxWidth="sm">
-                        <Typography
-                            component="h1"
-                            variant="h2"
-                            align="center"
-                            color="text.primary"
-                            gutterBottom
-                        >
-                            Welcome to the Drunken Huntsman
-                        </Typography>
-                        <Typography variant="h5" align="center" color="text.secondary" paragraph>
+                    <Container maxWidth="sm" sx={{alignContent: 'center', }}>
+                        <Box
+                            component='img'
+                            alt='Drunken Huntsman'
+                            src='/DH-Logo.png'
+                            width={'100%'}
+
+                            sx={{
+                                height: '14rem',
+                                objectFit: 'contain'
+
+                            }}
+                        />
+                        <Typography variant="paragraph" align="center" color="text.secondary" paragraph>
                             We're a group of adult gamers with
                             like interests.  We do regular events, share memes, all the normal stuff
                             you can find in other servers.  Most of us are friends and family in the
