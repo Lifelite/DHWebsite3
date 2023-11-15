@@ -40,7 +40,6 @@ export function ViewBox(props) {
         fetchData()
 
     }, []);
-    console.log(userData)
 
     function eventHandler() {
         switch (props.view) {

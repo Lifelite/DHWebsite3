@@ -4,7 +4,7 @@ import {UserSSInfo} from "../../functions/userInfo";
 import React from "react";
 import NewUserHome from "./NewUserHome";
 import {SSUserHome} from "./SSUserHome";
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 
@@ -19,10 +19,18 @@ export function UserHome() {
         const sInfo = await new SantaInfo(ssUser, userEmail);
         const info = await sInfo.getSantaData()
         const ss = await new UserSSInfo(info);
-        if (await ss.checkForAccount()) {setPage("ss")}else{return <Navigate to={'/newUser'} />}
+        if (await ss.checkForAccount()) {
+            setPage("ss")
+        }else{
+            // let navigate = useNavigate()
+            // navigate('/newUser')
+            setPage("newUser")
+        }
     } catch (e) {
         console.log(e)
-        return <Navigate to={'/newUser'}/>
+        // let navigate = useNavigate()
+        // navigate('/newUser')
+        setPage("newUser")
     }};
 
     const currentPage = () => {
@@ -31,7 +39,7 @@ export function UserHome() {
             setPage("nope")
         })
         if (page === "newUser") {
-            return <NewUserHome />
+            return <Navigate to={"/newUser"}/>
         }else{
             return <SSUserHome />
         }

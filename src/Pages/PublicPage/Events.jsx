@@ -164,14 +164,14 @@ export default function Events() {
     const [irlValue, setIrlValue] = React.useState("No")
     const [submitAlert, setSubmitAlert] = React.useState(true);
 
-    const hanldeSwitch= (id) => {
-        if (id === "irl") {
+    const handleSwitch= (e) => {
+        if (e.target.id === "irl") {
             if (irlValue === "Yes"){
                 setIrlValue("No")
             }else{
                 setIrlValue("Yes")
             }
-        }else if(id === "backup"){
+        }else if(e.target.id === "backup"){
             if (backupValue === "Yes"){
                 setBackupValue("No")
             }else{
@@ -426,10 +426,10 @@ export default function Events() {
                                     </RadioGroup>
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <FormControlLabel id="irl" onChange={() => hanldeSwitch("irl")} value={irlValue} control={<Switch />} label="In Person Gift Okay?" />
+                                    <FormControlLabel id="irl" onChange={handleSwitch} value={irlValue} control={<Switch />} label="In Person Gift Okay?" />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <FormControlLabel id="backup" onChange={() => hanldeSwitch("backup")} value={backupValue} control={<Switch />} label="Serve as a Backup Santa?" />
+                                    <FormControlLabel id="backup" onChange={handleSwitch} value={backupValue} control={<Switch />} label="Serve as a Backup Santa?" />
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
                                     <FormControlLabel

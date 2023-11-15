@@ -59,7 +59,70 @@ export class SantaSubmit {
         const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, `irl`, `backup`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
         return await conn.execute(query, params);
     };
+
+    async editSantaData(id, user) {
+        const params = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            discord: this.discord,
+            address1: this.address1,
+            address2: this.address2,
+            city: this.city,
+            state: this.state,
+            zip: this.zip,
+            likes: this.likes,
+            dislikes: this.dislikes,
+            charity: this.charity,
+            allergies: this.allergies,
+            nsfw: this.nsfw,
+            irl: this.irl,
+            backup: this.backup,
+            userName: user
+        };
+
+        switch (id) {
+            case "name": {
+                const query = "UPDATE SecretSanta SET `firstName` = :firstName, `lastName` = :lastName WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "email": {
+                const query = "UPDATE SecretSanta SET `email` = :email WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "address": {
+                const query = "UPDATE SecretSanta SET `address1` = :address1, `address2` = :address2, `city` = :city, `state` = :state, `zip` = :zip WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "discord": {
+                const query = "UPDATE SecretSanta SET `discord` = :discord WHERE `userName` = :userName"
+                return await conn.execute(query, params);
+            }
+            case "likes": {
+                const query = "UPDATE SecretSanta SET `likes` = :likes WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "dislikes": {
+                const query = "UPDATE SecretSanta SET `dislikes` = :dislikes WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "charity": {
+                const query = "UPDATE SecretSanta SET `charity` = :charity WHERE `userName` = :userName";
+                return await conn.execute(query, params);
+            }
+            case "allergies": {
+                const query = "UPDATE SecretSanta SET `allergies` = :allergies WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+            case "gift": {
+                const query = "UPDATE SecretSanta SET `nsfw` = :nsfw, `irl` = :irl, `backup` = :backup WHERE `userName` = :userName;";
+                return await conn.execute(query, params);
+            }
+        }
+    }
 }
+
+
 
 
 

@@ -19,9 +19,14 @@ export class UserSSInfo {
         this.victimName = this.userInfo["victimName"];
         this.irl = this.userInfo["irl"]
         this.backup = this.userInfo["backup"]
+        this.id = this.userInfo["userName"]
     }
 
     checkForAccount() {
+        return (this.id) ? this.id : null
+    }
+
+    checkForAccountToLink() {
         return (this.firstName) ? this.firstName : null
     }
 
@@ -44,6 +49,7 @@ export class UserSSInfo {
             victimName: this.victimName,
             irl: this.irl,
             backup: this.backup,
+            userName: this.id,
         }
     }
 }
