@@ -426,10 +426,10 @@ export default function Events() {
                                     </RadioGroup>
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <FormControlLabel id="irl" onChange={handleSwitch} value={irlValue} control={<Switch />} label="In Person Gift Okay?" />
+                                    <FormControlLabel id="irl" name='irl' onChange={handleSwitch} value={irlValue} control={<Switch onChange={handleSwitch} value={irlValue} />} label="In Person Gift Okay?" />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <FormControlLabel id="backup" onChange={handleSwitch} value={backupValue} control={<Switch />} label="Serve as a Backup Santa?" />
+                                    <FormControlLabel id="backup" name='backup' onChange={handleSwitch} value={backupValue} control={<Switch onChange={handleSwitch} value={backupValue} />} label="Serve as a Backup Santa?" />
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
                                     <FormControlLabel

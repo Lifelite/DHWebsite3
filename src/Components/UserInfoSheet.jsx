@@ -1,12 +1,9 @@
-import {ButtonBase, Card, CardActionArea, MenuItem, Paper, Select, Switch, TextareaAutosize} from "@mui/material";
+import {Card, CardActionArea, MenuItem, Select, Switch} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import {InfoItem} from "./InfoItem";
-import {EditButton} from "./EditButton";
-import {EditNameModal} from "./EditFieldFragments/EditNameModal";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -14,11 +11,10 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {SantaSubmit} from "../api/MySQL/mySQL";
 import {addressState} from "../functions/states";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import {UserInfo} from "../Pages/Dashboard/UserInfo";
 import {useNavigate} from "react-router-dom";
 
 export function UserInfoSheet(props) {
@@ -802,8 +798,8 @@ export function UserInfoSheet(props) {
 
                     <TextField
                         inputProps={{maxLength: '50'}}
-                        id="allergies"
-                        name="allergies"
+                        id="allergy-text"
+                        name="allergy-text"
                         label="Allergies"
                         type="text"
                         fullWidth
@@ -827,19 +823,20 @@ export function UserInfoSheet(props) {
                         Edit your gift options.
                     </DialogContentText>
                     <Grid container direction={'column'}>
-                    <FormControlLabel id="backup" onChange={handleBackupChange} value={backupValue} control={<Switch />} label="Serve as a Backup Santa?" />
-                    <FormControlLabel id="irl" onChange={handleIRLChange} value={irlValue} control={<Switch />} label="In Person Gift Okay?" />
+                    <FormControlLabel id="backup" name='backup' onChange={handleBackupChange} value={backupValue} control={<Switch onChange={handleBackupChange} value={backupValue}/>} label="Serve as a Backup Santa?" />
+                    <FormControlLabel id="irl" name='irl' onChange={handleIRLChange} value={irlValue} control={<Switch onChange={handleIRLChange} value={irlValue}/>} label="In Person Gift Okay?" />
                         <Typography sx={{pt:2}}>NSFW Okay?</Typography>
                         <Select
                         labelId="NSFW"
                         id="nsfw"
+                        name='nsfw'
                         autoWidth
                         value={nsfwValue}
                         onChange={handleNSFWChange}
                     >
-                        <MenuItem value={"No"}>No</MenuItem>
-                        <MenuItem value={"Yes"}>Yes</MenuItem>
-                        <MenuItem value={"Degenerate"}>I'm a Degenerate</MenuItem>
+                        <MenuItem key="No" value={"No"}>No</MenuItem>
+                        <MenuItem key="Yes" value={"Yes"}>Yes</MenuItem>
+                        <MenuItem key="Degenerate" value={"Degenerate"}>I'm a Degenerate</MenuItem>
                     </Select>
                     </Grid>
                 </DialogContent>
