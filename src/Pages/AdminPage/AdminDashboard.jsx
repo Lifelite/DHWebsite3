@@ -9,16 +9,16 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems} from '../../Components/Admin/listItems';
 import theme from "../../theme";
 import {useEffect, useState} from "react";
 import {AdminControls} from "../../api/MySQL/adminControls";
 import {UserSSInfo} from "../../functions/userInfo";
 import {DashboardView} from "../../Components/Admin/DashboardView";
+import {DateGetter} from "../../functions/DateGetter"
+import {UserButton} from "@clerk/clerk-react";
 
 const drawerWidth = 240;
 
@@ -69,7 +69,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function AdminDashboard() {
     const [data, setData] = useState(null)
 
+    const [dates, setDates] = useState(null)
+    useEffect(() => {
 
+
+        async function fetchDate() {
+            try {
+                const ac = new AdminControls()
+                let ss = await ac.getDates()
+                const ssInfo = await new DateGetter(ss)
+                await setDates(ssInfo.getDateData())
+            }catch (e) {
+                console.log(e)
+            }
+        }
+        fetchDate()
+
+    }, [dates]);
     useEffect(() => {
 
 
@@ -79,7 +95,6 @@ export default function AdminDashboard() {
                 let ss = await ac.getSecretSantas()
                 const ssInfo = await new UserSSInfo(ss)
                 await setData(ssInfo.getAllInfo())
-                console.log(data)
             }catch (e) {
                 console.log(e)
             }
@@ -87,6 +102,10 @@ export default function AdminDashboard() {
         fetchData()
 
     }, []);
+
+
+
+
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -125,9 +144,7 @@ export default function AdminDashboard() {
                             Dashboard
                         </Typography>
                         <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
+                                <UserButton />
                         </IconButton>
                     </Toolbar>
                 </AppBar>
@@ -162,7 +179,7 @@ export default function AdminDashboard() {
                     }}
                 >
                     <Toolbar />
-                    <DashboardView data={data}/>
+                    <DashboardView data={data} dates={dates}/>
                 </Box>
             </Box>
         </ThemeProvider>

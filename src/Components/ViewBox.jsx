@@ -31,8 +31,6 @@ export function ViewBox(props) {
                 let ss = await sInfo.getSantaData()
                 const ssInfo = await new UserSSInfo(ss)
                 await setData(ssInfo.getInfo())
-                //await setData(ssInfo)
-                console.log(userData)
             }catch (e) {
                 console.log(e)
             }

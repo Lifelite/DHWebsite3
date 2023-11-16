@@ -6,8 +6,6 @@ import {UserInfoSheet} from "../../Components/UserInfoSheet";
 export function UserInfo(props) {
     const data = props.userData
 
-    console.log(props.userData)
-
     function showView () {
         if (props.userData) {
             return <UserInfoSheet data={data} />

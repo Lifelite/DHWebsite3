@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
+import Typography from "@mui/material/Typography";
 
 export default function Fulfillment() {
 
@@ -9,15 +10,18 @@ export default function Fulfillment() {
         { id: 2, value: 0, label: 'Pending'}
     ]
     return (
-        <PieChart
-            series={[
-                {
-                    data,
-                    highlightScope: { faded: 'global', highlighted: 'item' },
-                    faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                },
-            ]}
-            height={200}
-        />
+        // <PieChart
+        //     series={[
+        //         {
+        //             startAngle: -90,
+        //             endAngle: 90,
+        //             data,
+        //         },
+        //     ]}
+        //     height={300}
+        // />
+        <Typography>
+            Coming soon, fulfillment metrics!
+        </Typography>
     );
 }

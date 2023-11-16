@@ -2,11 +2,9 @@ import * as React from 'react';
 import {useTheme} from '@mui/material/styles';
 import {LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer} from 'recharts';
 import ChartTitle from "./ChartTitle";
-import {AdminControls} from '../../api/MySQL/adminControls'
 
 
-const ac = new AdminControls
-const ssdata = ac.getDateData()
+
 
 function createChartData(ssData) {
     // const chartData = []
@@ -23,22 +21,35 @@ function createChartData(ssData) {
             let count = fDate.length
             chartData.push({bFDate, count})
         }
+
         return chartData;
     };
     return sdata(ssData)
 }
 
-const data = createChartData(ssdata)
+function createData(date,value) {
+    return {date, value}
+}
 
-export default function Chart() {
+
+export default function Chart(props) {
+    let dates = props.ssData
+    let data = []
     const theme = useTheme();
+    const fdates = createChartData(dates)
+    for (let i in fdates) {
+        data.push(
+            createData(fdates[i]["bFDate"], fdates[i]["count"])
+
+        )
+    }
 
     return (
         <React.Fragment>
             <ChartTitle>Sign ups</ChartTitle>
             <ResponsiveContainer>
                 <LineChart
-                    data={() => createChartData(data)}
+                    data={data}
                     margin={{
                         top: 16,
                         right: 16,
@@ -47,7 +58,7 @@ export default function Chart() {
                     }}
                 >
                     <XAxis
-                        dataKey="time"
+                        dataKey="date"
                         stroke={theme.palette.text.secondary}
                         style={theme.typography.body2}
                     />
@@ -70,9 +81,9 @@ export default function Chart() {
                     <Line
                         isAnimationActive={false}
                         type="monotone"
-                        dataKey="amount"
+                        dataKey="value"
                         stroke={theme.palette.primary.main}
-                        dot={false}
+                        dot={true}
                     />
                 </LineChart>
             </ResponsiveContainer>

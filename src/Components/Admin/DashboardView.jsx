@@ -7,11 +7,17 @@ import Container from "@mui/material/Container";
 import * as React from "react";
 
 
+
 export function DashboardView(props) {
     const data = props.data
-    console.log(data)
+    const dates = props.dates
 
     function showView() {
+        if (props.dates) {
+            return <Chart ssData={dates}/>
+        }
+    }
+    function showTable() {
         if (props.data) {
             return <SantaTable data={data}/>
         }
@@ -31,7 +37,7 @@ export function DashboardView(props) {
                             height: 240,
                         }}
                     >
-                        <Chart />
+                        {showView()}
                     </Paper>
                 </Grid>
                 {/* Recent Deposits */}
@@ -50,7 +56,7 @@ export function DashboardView(props) {
                 {/* Recent Orders */}
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        {showView()}
+                        {showTable()}
                     </Paper>
                 </Grid>
             </Grid>
