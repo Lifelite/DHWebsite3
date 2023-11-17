@@ -13,6 +13,9 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "latest",
+    "@mui/x-charts": "^6.18.1",
+    "@mui/x-data-grid": "^6.18.1",
+    "@mui/x-data-grid-generator": "^6.18.1",
     "@planetscale/database": "^1.11.0",
     "@vercel/edge-config": "^0.4.1",
     "dotenv": "^16.3.1",
@@ -21,7 +24,8 @@
     "mysql2": "^3.6.3",
     "react": "latest",
     "react-dom": "latest",
-    "react-router-dom": "^6.18.0"
+    "react-router-dom": "^6.18.0",
+    "recharts": "^2.9.3"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "latest",

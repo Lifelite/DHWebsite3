@@ -1,6 +1,7 @@
 
 export class UserSSInfo {
     constructor(data) {
+        this.allUsers = data
         this.userInfo = data["rows"][0];
         this.discord = this.userInfo["discord"];
         this.firstName = this.userInfo["firstName"];
@@ -28,6 +29,10 @@ export class UserSSInfo {
 
     checkForAccountToLink() {
         return (this.firstName) ? this.firstName : null
+    }
+
+    getAllInfo() {
+        return this.allUsers
     }
 
     getInfo() {

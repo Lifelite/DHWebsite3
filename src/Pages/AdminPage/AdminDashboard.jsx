@@ -1,50 +1,187 @@
-import Grid from "@mui/material/Grid";
+import * as React from 'react';
+import { styled, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiDrawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { mainListItems} from '../../Components/AdminDashboardViews/listItems';
+import theme from "../../theme";
+import {useEffect, useState} from "react";
+import {AdminControls} from "../../api/MySQL/adminControls";
+import {UserSSInfo} from "../../functions/userInfo";
+import {DashboardView} from "../../Components/AdminDashboardViews/DashboardView";
+import {DateGetter} from "../../functions/DateGetter"
 import {UserButton} from "@clerk/clerk-react";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
 
-export function AdminDashboard() {
+const drawerWidth = 240;
+
+const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
+        '& .MuiDrawer-paper': {
+            position: 'relative',
+            whiteSpace: 'nowrap',
+            width: drawerWidth,
+            transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+            boxSizing: 'border-box',
+            ...(!open && {
+                overflowX: 'hidden',
+                transition: theme.transitions.create('width', {
+                    easing: theme.transitions.easing.sharp,
+                    duration: theme.transitions.duration.leavingScreen,
+                }),
+                width: theme.spacing(7),
+                [theme.breakpoints.up('sm')]: {
+                    width: theme.spacing(9),
+                },
+            }),
+        },
+    }),
+);
+
+export default function AdminDashboard() {
+    const [data, setData] = useState(null)
+
+    const [dates, setDates] = useState(null)
+    useEffect(() => {
+
+
+        async function fetchDate() {
+            try {
+                const ac = new AdminControls()
+                let ss = await ac.getDates()
+                const ssInfo = await new DateGetter(ss)
+                await setDates(ssInfo.getDateData())
+            }catch (e) {
+                console.log(e)
+            }
+        }
+        fetchDate()
+
+    }, [dates]);
+    useEffect(() => {
+
+
+        async function fetchData() {
+            try {
+                const ac = new AdminControls()
+                let ss = await ac.getSecretSantas()
+                const ssInfo = await new UserSSInfo(ss)
+                await setData(ssInfo.getAllInfo())
+            }catch (e) {
+                console.log(e)
+            }
+        }
+        fetchData()
+
+    }, []);
+
+
+
+
+
+    const [open, setOpen] = React.useState(true);
+    const toggleDrawer = () => {
+        setOpen(!open);
+    };
+
     return (
-        <React.Fragment>
-            <Grid container sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "flex-end",
-                direction: 'column-reverse'
-            }}>
-                <UserButton/>
-                <Badge color="secondary" variant="dot">
-                    <MailIcon/>
-                </Badge>
-            </Grid>
-            <Box
-                sx={{
-                    flexGrow: 1,
-                    height: '100vh',
-                    overflow: 'auto',
-                    pt: 2,
-                }}>
-
-
-                <Grid
-                    container
-                    spacing={{xs: 2, md: 3}}
-                    columns={{xs: 4, sm: 8, md: 12}}
-                    sx={{
-                        bgcolor: 'background.paper',
-                        display: 'flex',
-                        flexGrow: 1,
-                    }}>
-                    <Grid item xs={12} sm={6}>
-                        <Typography>
-                            I'm just putting a placeholder here for funzies
+        <ThemeProvider theme={theme}>
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                <AppBar position="absolute" open={open}>
+                    <Toolbar
+                        sx={{
+                            pr: '24px', // keep right padding when drawer closed
+                        }}
+                    >
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={toggleDrawer}
+                            sx={{
+                                marginRight: '36px',
+                                ...(open && { display: 'none' }),
+                            }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography
+                            component="h1"
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            sx={{ flexGrow: 1 }}
+                        >
+                            Dashboard
                         </Typography>
-                    </Grid>
-                </Grid>
+                        <IconButton color="inherit">
+                                <UserButton />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+                <Drawer variant="permanent" open={open}>
+                    <Toolbar
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-end',
+                            px: [1],
+                        }}
+                    >
+                        <IconButton onClick={toggleDrawer}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </Toolbar>
+                    <Divider />
+                    <List component="nav">
+                        {mainListItems}
+                    </List>
+                </Drawer>
+                <Box
+                    component="main"
+                    sx={{
+                        backgroundColor: (theme) =>
+                            theme.palette.mode === 'light'
+                                ? theme.palette.grey[100]
+                                : theme.palette.grey[900],
+                        flexGrow: 1,
+                        height: '100vh',
+                        overflow: 'auto',
+                    }}
+                >
+                    <Toolbar />
+                    <DashboardView data={data} dates={dates}/>
+                </Box>
             </Box>
-        </React.Fragment>
-    )
+        </ThemeProvider>
+    );
 }
