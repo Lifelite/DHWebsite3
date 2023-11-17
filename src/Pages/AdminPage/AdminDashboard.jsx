@@ -11,12 +11,12 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems} from '../../Components/Admin/listItems';
+import { mainListItems} from '../../Components/AdminDashboardViews/listItems';
 import theme from "../../theme";
 import {useEffect, useState} from "react";
 import {AdminControls} from "../../api/MySQL/adminControls";
 import {UserSSInfo} from "../../functions/userInfo";
-import {DashboardView} from "../../Components/Admin/DashboardView";
+import {DashboardView} from "../../Components/AdminDashboardViews/DashboardView";
 import {DateGetter} from "../../functions/DateGetter"
 import {UserButton} from "@clerk/clerk-react";
 

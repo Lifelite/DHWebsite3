@@ -22,6 +22,11 @@ export function DashboardView(props) {
             return <SantaTable data={data}/>
         }
     }
+    function showMetrics() {
+        if (props.data) {
+            return <Fulfillment data={data}/>
+        }
+    }
 
     return (
         <React.Fragment>
@@ -44,13 +49,14 @@ export function DashboardView(props) {
                 <Grid item xs={12} md={4} lg={3}>
                     <Paper
                         sx={{
-                            p: 2,
-                            display: 'flex',
-                            flexDirection: 'column',
+                            p: 0,
+                            display: 'inline-flex',
+                            flexDirection: 'row',
                             height: 240,
                         }}
                     >
-                        <Fulfillment />
+
+                        {showMetrics()}
                     </Paper>
                 </Grid>
                 {/* Recent Orders */}

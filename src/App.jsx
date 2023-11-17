@@ -5,7 +5,7 @@ import {ClerkProvider, SignedIn} from "@clerk/clerk-react";
 import {Route, Routes} from "react-router-dom";
 import NewUserHome from "./Pages/Dashboard/NewUserHome";
 import {SignedOutPage} from "./Pages/PublicPage/SignedOutPage";
-import {AdminAuth} from "./Components/Admin/AdminAuth";
+import {AdminAuth} from "./Components/AdminDashboardViews/AdminAuth";
 
 export default function App() {
     const [width, setWidth] = useState(window.innerWidth);
