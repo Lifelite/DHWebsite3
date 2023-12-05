@@ -4,8 +4,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import MessageIcon from '@mui/icons-material/Message';
-import CollectionsIcon from '@mui/icons-material/Collections';
 import BackupIcon from '@mui/icons-material/Backup';
 
 export default function AdminNavList(props) {

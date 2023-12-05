@@ -19,7 +19,6 @@ import {UserSSInfo} from "../../functions/userInfo";
 import {DashboardView} from "../../Components/AdminDashboardViews/DashboardView";
 import {DateGetter} from "../../functions/DateGetter"
 import {UserButton} from "@clerk/clerk-react";
-import {Participants} from "./Participants";
 
 const drawerWidth = 240;
 
