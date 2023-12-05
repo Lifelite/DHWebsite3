@@ -29,18 +29,6 @@ export default function AdminNavList(props) {
             </ListItemIcon>
             <ListItemText primary="Participants" />
         </ListItemButton>
-        {/*<ListItemButton>*/}
-        {/*    <ListItemIcon>*/}
-        {/*        <MessageIcon />*/}
-        {/*    </ListItemIcon>*/}
-        {/*    <ListItemText primary="Messaging" />*/}
-        {/*</ListItemButton>*/}
-        {/*<ListItemButton>*/}
-        {/*    <ListItemIcon>*/}
-        {/*        <CollectionsIcon />*/}
-        {/*    </ListItemIcon>*/}
-        {/*    <ListItemText primary="Gallery" />*/}
-        {/*</ListItemButton>*/}
         <ListItemButton>
             <ListItemIcon>
                 <BackupIcon />

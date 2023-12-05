@@ -60,7 +60,7 @@ export const PublicMenuDesktop = ({callback}) => {
                 <ListItemIcon>
                     <CalendarMonthIcon/>
                 </ListItemIcon>
-                <ListItemText primary="SSSignup"/>
+                <ListItemText primary="Events"/>
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}
