@@ -1,8 +1,8 @@
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import * as React from "react";
+import {useEffect, useState} from "react";
 import Home from "../Pages/PublicPage/Home";
-import Events from "../Pages/PublicPage/Events";
 import Gallery from "../Pages/PublicPage/Gallery";
 import Links from "../Pages/PublicPage/Links";
 import {Profile} from "../Pages/PublicPage/Profile";
@@ -12,9 +12,9 @@ import {Messages} from "../Pages/Dashboard/Messages";
 import {UserInfo} from "../Pages/Dashboard/UserInfo";
 import {VictimInfo} from "../Pages/Dashboard/VictimInfo";
 import NewUserHome from "../Pages/Dashboard/NewUserHome";
-import {useEffect, useState} from "react";
-import {SantaInfo} from "../api/MySQL/mySQL";
+import {SantaInfo} from "../../Data/mySQL";
 import {UserSSInfo} from "../functions/userInfo";
+import {Events} from "../Pages/PublicPage/Events";
 
 export function ViewBox(props) {
     const [userData, setData] = useState(null);
@@ -58,7 +58,7 @@ export function ViewBox(props) {
             case "userInfo":
                 return <UserInfo userData={userData}/>
             case "victimInfo":
-                return <VictimInfo/>
+                return <VictimInfo userID={props.userID} userEmail={props.userEmail} userData={userData}/>
             case "profile":
                 return <UserProfile/>
             case "newUser":

@@ -1,9 +1,6 @@
 import {connect} from "@planetscale/database";
 
 
-
-
-
 const config = {
     //url: process.env.DATABASE_URL,
     host: import.meta.env.VITE_PS_HOST,
@@ -56,8 +53,11 @@ export class SantaSubmit {
             backup: this.backup,
         };
 
+        //const dhUrl = 'https://drunkenhuntsman.com/api/write.santa'
         const query = "INSERT INTO SecretSanta (`firstName`, `lastName`, `email`, `discord`, `address1`, `address2`, `city`, `state`, `zip`, `likes`, `dislikes`, `charity`, `allergies`, `nsfw`, `irl`, `backup`) VALUES (:firstName, :lastName, :email, :discord, :address1, :address2, :city, :state, :zip, :likes, :dislikes, :charity, :allergies, :nsfw, :irl, :backup);";
         return await conn.execute(query, params);
+
+
     };
 
     async editSantaData(id, user) {
@@ -122,7 +122,22 @@ export class SantaSubmit {
     }
 }
 
+export class LogisticConfirm {
+    constructor(user) {
+        this.user = user
+    }
 
+
+
+    async shipped () {
+        const params = {
+            user: this.user
+        }
+        const query = "UPDATE SecretSanta SET sent = true WHERE `userName` = :user;";
+        return await conn.execute(query, params);
+    }
+
+}
 
 
 
@@ -141,6 +156,11 @@ export class SantaInfo {
 
     async getSantaData() {
         const query = "SELECT * FROM SecretSanta WHERE email = '" + this.email + "';";
+        return await conn.execute(query);
+    }
+
+    async getVictimData() {
+        const query = "SELECT firstName, lastName, discord, address1, address2, state, city, zip, likes, dislikes, allergies, nsfw, backup, received FROM SecretSanta WHERE userName = '" + this.user + "';";
         return await conn.execute(query);
     }
 

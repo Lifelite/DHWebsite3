@@ -8,7 +8,14 @@ import MessageIcon from '@mui/icons-material/Message';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import BackupIcon from '@mui/icons-material/Backup';
 
-export const mainListItems = (
+export default function AdminNavList(props) {
+    const {
+        callback,
+        index
+    } = props
+
+
+    return (
     <React.Fragment>
         <ListItemButton>
             <ListItemIcon>
@@ -22,18 +29,18 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Participants" />
         </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <MessageIcon />
-            </ListItemIcon>
-            <ListItemText primary="Messaging" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <CollectionsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Gallery" />
-        </ListItemButton>
+        {/*<ListItemButton>*/}
+        {/*    <ListItemIcon>*/}
+        {/*        <MessageIcon />*/}
+        {/*    </ListItemIcon>*/}
+        {/*    <ListItemText primary="Messaging" />*/}
+        {/*</ListItemButton>*/}
+        {/*<ListItemButton>*/}
+        {/*    <ListItemIcon>*/}
+        {/*        <CollectionsIcon />*/}
+        {/*    </ListItemIcon>*/}
+        {/*    <ListItemText primary="Gallery" />*/}
+        {/*</ListItemButton>*/}
         <ListItemButton>
             <ListItemIcon>
                 <BackupIcon />
@@ -41,5 +48,5 @@ export const mainListItems = (
             <ListItemText primary="Backups" />
         </ListItemButton>
     </React.Fragment>
-);
+)};
 

@@ -45,7 +45,6 @@ export function DashboardView(props) {
                         {showView()}
                     </Paper>
                 </Grid>
-                {/* Recent Deposits */}
                 <Grid item xs={12} md={4} lg={3}>
                     <Paper
                         sx={{
@@ -59,7 +58,6 @@ export function DashboardView(props) {
                         {showMetrics()}
                     </Paper>
                 </Grid>
-                {/* Recent Orders */}
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         {showTable()}

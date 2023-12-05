@@ -6,6 +6,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 export default function SantaTable(props) {
     const allData = props.data
     const ssData = allData["rows"]
+    console.log(ssData)
     const ssHeaders = allData["headers"]
     let hArray = []
     for (let i in ssHeaders) {

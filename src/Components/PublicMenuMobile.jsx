@@ -42,7 +42,7 @@ export const PublicMenuMobile = ({callback}) => {
                     value={0}
                 />
                 <BottomNavigationAction
-                    label="Events"
+                    label="SSSignup"
                     icon={<CalendarMonthIcon/>}
                     value={1}
                 />

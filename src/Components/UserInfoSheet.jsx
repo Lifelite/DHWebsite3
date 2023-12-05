@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import * as React from "react";
+import {useState} from "react";
 import Grid from "@mui/material/Grid";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,8 +12,7 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import {useState} from "react";
-import {SantaSubmit} from "../api/MySQL/mySQL";
+import {SantaSubmit} from "../../Data/mySQL";
 import {addressState} from "../functions/states";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import {useNavigate} from "react-router-dom";
@@ -85,8 +85,8 @@ export function UserInfoSheet(props) {
     const [allergyValue, setAllergyValue] = useState(data.allergies)
     const [charityValue, setCharityValue] = useState(data.charity)
     const [nsfwValue, setNSFWValue] = useState(data.nsfw)
-    const [irlValue, setIRLValue] = useState(data.irl)
-    const [backupValue, setBackupValue] = useState(data.backup)
+    const [irlValue, setIRLValue] = useState("No")
+    const [backupValue, setBackupValue] = useState("No")
 
     const handleLNChange = (e) => {
         const value = e.target.value;
@@ -230,7 +230,7 @@ export function UserInfoSheet(props) {
                 columns={16}
                 mt={3}
                 sx={{alignItems: "stretch"}}
-                gridTemplateColumns="repeat(5, 1fr)"
+                gridTemplateColumns="repeat(9, 1fr)"
             >
                 <Grid
                     item={true}
@@ -250,7 +250,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -281,7 +284,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -312,7 +318,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -348,7 +357,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -379,7 +391,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -410,7 +425,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -441,7 +459,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -472,7 +493,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -503,7 +527,10 @@ export function UserInfoSheet(props) {
                             sx={{
                                 p: 2,
                                 margin: 'auto',
-                                flexGrow: 1,
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'left',
+                                flexDirection: 'column',
                                 backGroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
@@ -823,8 +850,8 @@ export function UserInfoSheet(props) {
                         Edit your gift options.
                     </DialogContentText>
                     <Grid container direction={'column'}>
-                    <FormControlLabel id="backup" name='backup' onChange={handleBackupChange} value={backupValue} control={<Switch onChange={handleBackupChange} value={backupValue}/>} label="Serve as a Backup Santa?" />
-                    <FormControlLabel id="irl" name='irl' onChange={handleIRLChange} value={irlValue} control={<Switch onChange={handleIRLChange} value={irlValue}/>} label="In Person Gift Okay?" />
+                    <FormControlLabel id="backup" name='backup' control={<Switch onChange={handleBackupChange} value={backupValue}/>} label="Serve as a Backup Santa?" />
+                    <FormControlLabel id="irl" name='irl' control={<Switch onChange={handleIRLChange} value={irlValue}/>} label="In Person Gift Okay?" />
                         <Typography sx={{pt:2}}>NSFW Okay?</Typography>
                         <Select
                         labelId="NSFW"

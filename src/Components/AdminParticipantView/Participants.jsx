@@ -1,5 +1,0 @@
-export function Participants() {
-    return (
-        <></>
-    )
-}

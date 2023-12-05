@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import {useEffect, useState} from 'react';
+import {styled, ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -11,14 +12,14 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems} from '../../Components/AdminDashboardViews/listItems';
+import AdminNavList from '../../Components/AdminDashboardViews/AdminNavList';
 import theme from "../../theme";
-import {useEffect, useState} from "react";
-import {AdminControls} from "../../api/MySQL/adminControls";
+import {AdminControls} from "../../../Data/adminControls";
 import {UserSSInfo} from "../../functions/userInfo";
 import {DashboardView} from "../../Components/AdminDashboardViews/DashboardView";
 import {DateGetter} from "../../functions/DateGetter"
 import {UserButton} from "@clerk/clerk-react";
+import {Participants} from "./Participants";
 
 const drawerWidth = 240;
 
@@ -103,10 +104,23 @@ export default function AdminDashboard() {
 
     }, []);
 
+    // function callback(view) {
+    //     setCurrentView(view)
+    // }
 
-
-
-
+    // const viewBox = () => {
+    //     switch (currentView) {
+    //         case "dashboard":
+    //             return <DashboardView data={data} dates={dates}/>
+    //         case "participants":
+    //             return <Participants data={data}/>
+    //         case "backups":
+    //             return <BackupDash />
+    //     }
+    // }
+    //
+    //
+    // const [currentView, setCurrentView] = React.useState("dashboard")
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -163,7 +177,7 @@ export default function AdminDashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        <AdminNavList/>
                     </List>
                 </Drawer>
                 <Box

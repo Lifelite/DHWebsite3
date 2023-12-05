@@ -18,9 +18,11 @@ export class UserSSInfo {
         this.charity = this.userInfo["charity"];
         this.nsfw = this.userInfo["nsfw"];
         this.victimName = this.userInfo["victimName"];
-        this.irl = this.userInfo["irl"]
-        this.backup = this.userInfo["backup"]
-        this.id = this.userInfo["userName"]
+        this.irl = this.userInfo["irl"];
+        this.backup = this.userInfo["backup"];
+        this.id = this.userInfo["userName"];
+        this.sent = this.userInfo["sent"];
+        this.received = this.userInfo["received"]
     }
 
     checkForAccount() {
@@ -55,6 +57,8 @@ export class UserSSInfo {
             irl: this.irl,
             backup: this.backup,
             userName: this.id,
+            sent: this.sent,
+            received: this.received
         }
     }
 }

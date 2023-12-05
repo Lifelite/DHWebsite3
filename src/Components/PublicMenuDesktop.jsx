@@ -9,10 +9,9 @@ import LinkIcon from "@mui/icons-material/Link";
 import Divider from "@mui/material/Divider";
 import {SignedIn, SignedOut, UserButton, useUser} from "@clerk/clerk-react";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import Link from "@mui/material/Link";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import {ListItem} from "@mui/material";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 export const PublicMenuDesktop = ({callback}) => {
@@ -61,7 +60,7 @@ export const PublicMenuDesktop = ({callback}) => {
                 <ListItemIcon>
                     <CalendarMonthIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Events"/>
+                <ListItemText primary="SSSignup"/>
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}

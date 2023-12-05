@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import {ThemeProvider} from "@mui/material/styles";
 import * as React from "react";
 import {useUser} from "@clerk/clerk-react";
-import {SantaInfo} from "../../api/MySQL/mySQL";
+import {SantaInfo} from "../../../Data/mySQL";
 import {UserSSInfo} from "../../functions/userInfo";
 import {Backdrop, CircularProgress} from "@mui/material";
 import {useNavigate} from "react-router-dom";
@@ -34,9 +34,11 @@ export default function NewUserHome() {
                     navigate('/user')
                 })
             } catch (e) {
+                isLoading(false)
                 popAlert(true)
             }
         } else {
+            isLoading(false)
             console.log("Account not found")
             popAlert(true)
         }

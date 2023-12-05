@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "vite-plugin-vercel": "^2.0.0"
   }
 }

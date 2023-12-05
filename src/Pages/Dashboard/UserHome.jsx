@@ -1,11 +1,9 @@
 import {useUser} from "@clerk/clerk-react";
-import {SantaInfo} from "../../api/MySQL/mySQL";
+import {SantaInfo} from "../../../Data/mySQL";
 import {UserSSInfo} from "../../functions/userInfo";
 import React from "react";
-import NewUserHome from "./NewUserHome";
 import {SSUserHome} from "./SSUserHome";
-import {Navigate, useNavigate} from "react-router-dom";
-
+import {Navigate} from "react-router-dom";
 
 
 export function UserHome() {
